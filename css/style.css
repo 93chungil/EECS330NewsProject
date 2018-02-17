@@ -1,0 +1,446 @@
+/*------------------------- General Properties -------------------------*/
+
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body, html {
+    left: 0;
+    top: 0;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+}
+body {
+    color: #2f2f2f;
+    line-height: 1.7;
+    background-color: #fff;
+}
+a {
+    color: #2f2f2f;
+    text-decoration: none;
+    transition: ease .6s;
+    -webkit-transition: ease .6s;
+    -moz-transition: ease .6s;
+    -o-transition: ease .6s;
+    -ms-transition: ease .6s;
+}
+
+/*----------------------------------------- 2) Preloader --------------------------------------------------*/
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #fff;
+    z-index: 999999;
+}
+#status {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-image: url(../images/loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    text-align: center;
+    margin: -40px 0 0 -100px;
+}
+#status img {
+    text-align: center;
+    margin-top: -80px;
+}
+
+/*----------------------------------------- Header --------------------------------------------------*/
+
+.header {
+    position: absolute;
+    display: inherit;
+    float: right;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    opacity: .6;
+    /* Force Hardware Acceleration */
+    transform: translateZ(0);
+    will-change: transform;
+    transition: transform .5s;
+}
+.header-name {
+    text-align: center;
+    position: relative;
+    margin-top: 5px;
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+
+/*------------------------- Animatations --------------------------------------*/
+
+
+/*------------------------- Animated Open Close Button --------------------------------------*/
+
+#sidebar-opener {
+    z-index: 9999;
+    width: 30px;
+    height: 20px;
+    position: fixed;
+    margin: 15px auto;
+    margin-left: 20px;
+    float: left;
+    transform: rotate(0deg);
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+#sidebar-opener span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #3B3B3B;
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+#sidebar-opener span:nth-child(1) {
+    top: 0px;
+}
+#sidebar-opener span:nth-child(2), #sidebar-opener span:nth-child(3) {
+    top: 9px;
+}
+#sidebar-opener span:nth-child(4) {
+    top: 18px;
+}
+#sidebar-opener.open span:nth-child(1) {
+    top: 9px;
+    width: 0%;
+    left: 50%;
+}
+#sidebar-opener.open span:nth-child(2) {
+    transform: rotate(45deg);
+}
+#sidebar-opener.open span:nth-child(3) {
+    transform: rotate(-45deg);
+}
+#sidebar-opener.open span:nth-child(4) {
+    top: 9px;
+    width: 0%;
+    left: 50%;
+}
+
+/*----------------------------------- Page Wrap --------------------------------*/
+
+#wrapper {
+    padding-left: 0;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled {
+    padding-left: 250px;
+}
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #fff;
+    transition: all 0.5s ease;
+}
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 0px;
+    }
+    #wrapper.toggled {
+        padding-left: 250;
+    }
+    #sidebar-wrapper {
+        width: 0px;
+    }
+    #wrapper.toggled #sidebar-wrapper {
+        width: 250px;
+    }
+    #page-content-wrapper {
+        position: relative;
+    }
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: -250px;
+    }
+}
+
+/*------------------------- Sidebar --------------------------*/
+
+.sidebar-nav {
+    position: relative;
+    top: 190px;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #999999;
+}
+.sidebar-nav li a:active, .sidebar-nav li a:focus {
+    text-decoration: none;
+    background-color: #eaeaea;
+}
+.sidebar-top {
+    text-indent: 20px;
+    height: 170px;
+    width: 100%;
+    font-size: 18px;
+    line-height: 60px;
+    background: #F7F5FB;
+    display: block;
+    position: absolute;
+}
+.profile-picture {
+    position: relative;
+    display: block;
+    margin-left: 15px;
+    margin-top: 15px;
+    height: auto;
+    width: auto;
+    max-width: 90px;
+    max-height: 90px;
+    border-radius: 45px;
+    -webkit-border-radius: 45px;
+    -moz-border-radius: 45px;
+}
+.your-name {
+    display: block;
+    position: relative;
+    white-space: nowrap;
+    color: #777;
+    font-size: .9em;
+    letter-spacing: 2px;
+    text-transform: none;
+}
+
+/*----------------------------------------- Typography --------------------------------------------------*/
+
+h1, h2, h3, h4, h5 {
+    letter-spacing: 0.8px;
+    font-family: 'Roboto Slab', serif;
+}
+p {
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    line-height: 34px;
+    font-weight: 300;
+}
+
+/*------------------------------ Main Content -----------------------------*/
+
+.account-page {
+    height: 100vh;
+    width: 100%;
+    background: #fdfdfd;
+}
+
+/*----------------------------- Map Element --------------------------------*/
+
+#google-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: #e7eaf0;
+}
+@media only screen and (min-width: 768px) {
+    #google-container {
+        height: 100vh;
+    }
+}
+@media only screen and (min-width: 1170px) {
+    #google-container {
+        height: 100vh;
+    }
+}
+#google-map {
+    position: relative;
+}
+#zoom-in, #zoom-out {
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    margin-left: 20px;
+    background-color: #a1c6ea;
+    background-repeat: no-repeat;
+    background-size: 32px 64px;
+    background-image: url("../images/icon-controller.svg");
+    transition: all .5s ease;
+}
+#zoom-in {
+    background-position: 50% 0;
+    margin-top: 60px;
+    margin-bottom: 1px;
+}
+#zoom-out {
+    background-position: 50% -32px;
+}
+#zoom-in:hover, #zoom-out:hover {
+    background-color: #577399;
+}
+@media only screen and (min-width: 768px) {
+    #zoom-in, #zoom-out {
+        margin-left: 30px;
+    }
+}
+@media only screen and (min-width: 768px) {
+    #zoom-in {
+        margin-top: 60px;
+    }
+}
+
+/*-------------- Footer ------------------*/
+
+.footer-top {
+    width: 100%;
+    text-align: center;
+    color: #cccccc;
+    display: flex;
+    height: 70px;
+}
+.socials {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.socials * {
+    box-sizing: border-box;
+    transition: all 0.35s ease;
+}
+.socials li {
+    display: inline-block;
+    list-style: outside none none;
+    float: left;
+    overflow: hidden;
+    width: 33.33333%;
+    font-size: 13px;
+}
+.socials a {
+    padding: 0.3em 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin: 0;
+    text-decoration: none;
+    padding: 25px 0;
+    width: 100%;
+}
+.socials a:before, .socials a:after {
+    position: absolute;
+    transition: all 0.35s ease;
+}
+.socials a:before {
+    bottom: 100%;
+    display: block;
+    height: 3px;
+    width: 100%;
+    content: "";
+}
+.socials a:after {
+    padding: 0.3em 0.8em;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    content: attr(data-hover);
+    color: white;
+    white-space: nowrap;
+    width: 100%;
+    padding: 25px 0;
+}
+.socials li:hover a, .socials .current a {
+    transform: translateY(100%);
+}
+.facebook {
+    background: #969696;
+    /*padding: 20px 0;*/
+}
+.facebook a:after {
+    background-color: #527bbb;
+}
+.twitter {
+    background: #ABABAB;
+}
+.twitter a:after {
+    background-color: #77ccf1;
+}
+.insta {
+    background: #d8d8d8;
+}
+.insta a:after {
+    background: #f56040;
+}
+.footer-bottom {
+    width: 100%;
+    background: #2f2f2f;
+    padding: 80px 0;
+}
+.calvin {
+    font-size: 4.0rem;
+    color: #c0c0c0;
+    text-align: center;
+    position: relative;
+    margin-top: -40px;
+    font-family: 'Yellowtail', cursive;
+    letter-spacing: 1px;
+    font-weight: 400;
+}
+#copyright {
+    font-weight: 400;
+    font-size: 1.4rem;
+    color: #c0c0c0;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}
+#madewith {
+    font-family: 'Roboto Slab';
+    font-weight: 400;
+    font-size: 1.6rem;
+    color: #c0c0c0;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}
+.material-icons.md-14 {
+    font-size: 14px;
+}

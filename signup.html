@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>News Aggregator</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0" name="viewport">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000">
+    <!--Favicon-->
+    <link href="images/favicon.png" rel="shortcut icon">
+    <!--Style Sheets-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/milligram.css" rel="stylesheet">
+    <link href="css/form.css" rel="stylesheet">
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet">
+</head>
+
+<body>
+    <!--Preloader-->
+    <div id="preloader">
+
+        <div id="status">
+            <img alt="logo" src="images/logo.png">
+        </div>
+    </div>
+    <!--End of Preloader-->
+    <!--Slide in Sidebar-->
+    <div id="wrapper">
+        <div id="sidebar-wrapper">
+            <nav class="sidebar-nav">
+                <li><a href="#0">Politics</a></li>
+                <li><a href="#0">Technology</a> </li>
+                <li><a href="#0">Finance</a></li>
+                <li><a href="#0">Health</a></li>
+                <li><a href="#0">Entertainment</a></li>
+                <li><a href="#0">Sports</a></li>
+            </nav>
+        </div>
+        <!--End of Sidebar-->
+        <!--Main Content Wrapper-->
+        <div id="page-content-wrapper">
+            <!--Header-->
+            <header class="header">
+                <div href="#menu-toggle" id="sidebar-opener">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <a href="index.html"><img id="logo" src="images/straight_logo.png" alt="News Aggregator"></a>
+            </header>
+            <!--End of Header-->
+
+            <div class="spacer-page">
+                <section id="sign-up">
+                    <div class="container">
+                        <div class="row">
+                            <div class="column column-10"></div>
+                            <div class="column">
+                                <h3>Welcome to News Aggregator</h3>
+                                <p>Create an account to get a customized news feed of topics you like the most.</p>
+                            </div>
+                            <div class="column column-10"></div>
+                        </div>
+                        <div class="row">
+                            <div class="column column-10"></div>
+                            <div class="column">
+                                <br>
+                                <p id="error">No errors</p>
+                                <form id="message_form" name="message_form">
+                                    <div class="form-group">
+                                        <input name="username" type="text" required="required" />
+                                        <label class="control-label" for="input">Username</label><i class="bar"></i>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="email" type="email" required="required" />
+                                        <label class="control-label" for="input">Email</label><i class="bar"></i>
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="password" type="password" required="required" />
+                                        <label class="control-label" for="input">Password</label><i class="bar"></i>
+                                    </div>
+                                </form>
+                                <br>
+                                <h6>Select your interests</h6>
+                                <br>
+                                <div class="row">
+
+                                    <div class="column">
+                                        <ul class="unstyled">
+                                            <li>
+                                                <input class="styled-checkbox" id="tech" type="checkbox" value="">
+                                                <label for="tech">Technology</label>
+                                            </li>
+                                            <li>
+                                                <input class="styled-checkbox" id="politics" type="checkbox" value="">
+                                                <label for="politics">Politics</label>
+                                            </li>
+                                            <li>
+                                                <input class="styled-checkbox" id="finance" type="checkbox" value="">
+                                                <label for="finance">Finance</label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="column">
+                                        <ul class="unstyled">
+                                            <li>
+                                                <input class="styled-checkbox" id="entertainment" type="checkbox" value="">
+                                                <label for="entertainment">Entertainment</label>
+                                            </li>
+                                            <li>
+                                                <input class="styled-checkbox" id="sports" type="checkbox" value="">
+                                                <label for="sports">Sports</label>
+                                                <li>
+                                                    <input class="styled-checkbox" id="health" type="checkbox" value="">
+                                                    <label for="health">Health</label>
+                                                </li>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <button type="button" id="signup-button">Sign Up</button>
+                            </div>
+                            <div class="column column-10"></div>
+                        </div>
+                </section>
+                </div>
+                <!-- Footer -->
+                <footer id="footer">
+                    <div class="footer-bottom">
+                        <img src="images/logo.png" alt="New Aggregator">
+                        <a id="copyright">Copyright &copy; 2018. All rights reserved.</a>
+                    </div>
+                </footer>
+                <!--End of Footer-->
+                <!--End of Content Wrapper-->
+            </div>
+        </div>
+        <script src="js/main.js" type="text/javascript"></script>
+
+</body>
+
+</html>

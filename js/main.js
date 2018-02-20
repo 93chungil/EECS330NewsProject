@@ -64,6 +64,17 @@ function intClick(interestID) {
 	buttonColor(interestID);
 }
 
+function update() {
+	if (profileValues["newpw"].value != profileValues["confirm"].value) {
+        alert('Please Check the Password');
+	    }
+	else {
+		var saveJSON = JSON.stringify(saved);
+		localStorage.setItem("user_info", saveJSON);
+		alert('Account Updated');
+	}
+}
+
 function populate() { 
 	profileValues.username = document.getElementById('username');
 	profileValues.email = document.getElementById('email');
@@ -75,8 +86,7 @@ function populate() {
 	profileValues.entertainment = document.getElementById('entertainment');
 	profileValues.health = document.getElementById('health');
 	profileValues.sports = document.getElementById('sports');
-	profileValues.update_profile = document.getElementById('update-profile');
-	profileValues.update_pw = document.getElementById('update-pw');
+	profileValues.update = document.getElementById('update');
 
 	profileValues["politics"].onclick = function() {intClick("politics")};
 	profileValues["finance"].onclick = function() {intClick("finance")};
@@ -84,21 +94,18 @@ function populate() {
 	profileValues["entertainment"].onclick = function() {intClick("entertainment")};
 	profileValues["health"].onclick = function() {intClick("health")};
 	profileValues["sports"].onclick = function() {intClick("sports")};
-	profileValues["update_profile"].onclick = function() {
-		var saveJSON = JSON.stringify(saved);
-    	localStorage.setItem("user_info", saveJSON);
-    	alert('Account Updated');
-	}
-	profileValues["update_pw"].onclick = function() {
-    	if (profileValues["newpw"].value == profileValues["confirm"].value) {
-        	var saveJSON = JSON.stringify(saved);
-    		localStorage.setItem("user_info", saveJSON);
-    		alert('Account Updated');
+	profileValues["update"].onclick = function() {update()};
+
+	//profileValues["update"].addEventListener('click', update);
+
+	//if enter key is presses, submit form
+	document.addEventListener("keydown", function(e) {
+	    if (e.which == 13 || e.keyCode == 13) {
+	        update();
+	        return false;
 	    }
-		else {
-			alert('Please Check the Password');
-		}
-	}
+	    return true;
+	});
 
 	buttonColor("politics");
 	buttonColor("finance");

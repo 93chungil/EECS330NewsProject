@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <title>News Aggregator</title>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -53,10 +54,15 @@
                     <span></span>
                 </div>
                 <div class="user_buttons">
-                    <button id="sign-in-button">Sign In</button>
-                    <button id="sign-up-button">Sign Up</button>
+                    <button id="sign-in-button" onclick="window.location.href='signin.html'">Sign In</button>
+                    <button id="sign-up-button" onclick="window.location.href='signup.html'">Sign Up</button>
                 </div>
-                <img id="logo" src="images/straight_logo.png" alt="News Aggregator">
+                <div id="account_links">
+                    <a href="javascript:sign_out()" title="Sign Out">Sign Out</a>
+                    <h3 class="vert_line"> | </h3>
+                    <a href="profile.html" title="Your profile">Profile</a>
+                </div>
+                <a href="index.html"><img id="logo" src="images/straight_logo.png" alt="News Aggregator"></a>
             </header>
             <!--End of Header-->
 
@@ -75,13 +81,13 @@
                                             <tr>
                                                 <th>Username</th>
                                                 <td>
-                                                    <input type="text" value="jsmith" class="input-xlarge">
+                                                    <input type="text" class="input-xlarge" id="username">
                                                 </td>
                                             </tr>
-                                            <tr>
+<!--                                            <tr>
                                                 <th>First Name</th>
                                                 <td>
-                                                    <input type="text" value="John" class="input-xlarge">
+                                                    <input type="text" value="John" class="input-xlarge" id="">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -89,11 +95,11 @@
                                                 <td>
                                                     <input type="text" value="Smith" class="input-xlarge">
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <th>Email</th>
                                                 <td>
-                                                    <input type="text" value="xxx@gmail.com" class="input-xlarge">
+                                                    <input type="text" class="input-xlarge" id="email">
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -106,19 +112,19 @@
                                             <tr>
                                                 <th>New Password</th>
                                                 <td>
-                                                    <input type="password" class="input-xlarge">
+                                                    <input type="password" class="input-xlarge" id="new_password">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <th>Confirm Password</th>
                                                 <td>
-                                                    <input type="password" class="input-xlarge">
+                                                    <input type="password" class="input-xlarge" id="confirm_pw">
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div>
-                                        <button class="button" id="update-password">Update</button>
+                                        <button class="button" id="update-pw">Update</button>
                                     </div>
                                 </div>
                             </div>
@@ -127,27 +133,27 @@
                                 <div class="interest-container">
                                     <div class="interest-wrapper">
                                         <img src="images/politics.jpg" class="interest-image">
-                                        <button class="button" id="interest-politics">Politics</button>
+                                        <button class="button" id="politics">Politics</button>
                                     </div>
                                     <div class="interest-wrapper">
                                         <img src="images/economics.jpg" class="interest-image">
-                                        <button class="button" id="interest-finance">Finance</button>
+                                        <button class="button" id="finance">Finance</button>
                                     </div>
                                     <div class="interest-wrapper">
                                         <img src="images/technology.jpg" class="interest-image">
-                                        <button class="button" id="interest-tech">Technology</button>
+                                        <button class="button" id="tech">Technology</button>
                                     </div>
                                     <div class="interest-wrapper">
                                         <img src="images/sports.png" class="interest-image">
-                                        <button class="button" id="interest-sports">Sports</button>
+                                        <button class="button" id="sports">Sports</button>
                                     </div>
                                     <div class="interest-wrapper">
                                         <img src="images/entertainment.jpg" class="interest-image">
-                                        <button class="button" id="interest-entertainment">Entertainment</button>
+                                        <button class="button" id="entertainment">Entertainment</button>
                                     </div>
                                     <div class="interest-wrapper">
                                         <img src="images/health.png" class="interest-image">
-                                        <button class="button" id="interest-health">Health</button>
+                                        <button class="button" id="health">Health</button>
                                     </div>
                                 </div>
                             </div>
@@ -166,6 +172,8 @@
             <!--End of Content Wrapper-->
         </div>
     </div>
+    <script src="js/signin_validate.js" type="text/javascript"></script>
+    <script src="js/signup_validate.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
 
 </body>

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <title>News Aggregator</title>
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
@@ -90,19 +91,18 @@
                                 <h6>Select your interests</h6>
                                 <br>
                                 <div class="row">
-
                                     <div class="column">
                                         <ul class="unstyled">
                                             <li>
-                                                <input class="styled-checkbox" id="tech" type="checkbox" value="">
+                                                <input class="styled-checkbox" id="tech" type="checkbox" value="" onclick="checkFunction(this.id)">
                                                 <label for="tech">Technology</label>
                                             </li>
                                             <li>
-                                                <input class="styled-checkbox" id="politics" type="checkbox" value="">
+                                                <input class="styled-checkbox" id="politics" type="checkbox" value="" onclick="checkFunction(this.id)">
                                                 <label for="politics">Politics</label>
                                             </li>
                                             <li>
-                                                <input class="styled-checkbox" id="finance" type="checkbox" value="">
+                                                <input class="styled-checkbox" id="finance" type="checkbox" value="" onclick="checkFunction(this.id)">
                                                 <label for="finance">Finance</label>
                                             </li>
                                         </ul>
@@ -110,16 +110,16 @@
                                     <div class="column">
                                         <ul class="unstyled">
                                             <li>
-                                                <input class="styled-checkbox" id="entertainment" type="checkbox" value="">
+                                                <input class="styled-checkbox" id="entertainment" type="checkbox" value="" onclick="checkFunction(this.id)">
                                                 <label for="entertainment">Entertainment</label>
                                             </li>
                                             <li>
-                                                <input class="styled-checkbox" id="sports" type="checkbox" value="">
+                                                <input class="styled-checkbox" id="sports" type="checkbox" value="" onclick="checkFunction(this.id)">
                                                 <label for="sports">Sports</label>
-                                                <li>
-                                                    <input class="styled-checkbox" id="health" type="checkbox" value="">
-                                                    <label for="health">Health</label>
-                                                </li>
+                                            </li>
+                                            <li>
+                                                <input class="styled-checkbox" id="health" type="checkbox" value="" onclick="checkFunction(this.id)">
+                                                <label for="health">Health</label>
                                             </li>
                                         </ul>
                                     </div>
@@ -143,8 +143,8 @@
                 <!--End of Content Wrapper-->
             </div>
         </div>
-        <script src="js/main.js" type="text/javascript"></script>
         <script src="js/signup_validate.js" type="text/javascript"></script>
+        <script src="js/main.js" type="text/javascript"></script>
 
 </body>
 

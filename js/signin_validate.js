@@ -3,6 +3,7 @@ let signin_button = document.getElementById('signin-button');
 let username = document.forms["signin_form"]["username"];
 let password = document.forms["signin_form"]["password"];
 let error = document.getElementById('error');
+let interests = [false, false, false, false, false, false];
 signin_button.addEventListener('click', validate);
 
 //if enter key is presses, submit form
@@ -20,6 +21,8 @@ function validate() {
 
     if (username.checkValidity() && password.checkValidity()) {
         localStorage.setItem("is_logged_in", true);
+        var savedJSON = localStorage.getItem("user_info");
+        let saved = JSON.parse(savedJSON);
         window.location.href = 'index.html';
     } else {
         failed();

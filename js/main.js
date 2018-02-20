@@ -1,11 +1,12 @@
+let saved;
+var profileValues = {};
+
 window.onload = function() {
 	setTimeout(() => {
 		document.getElementById('status').style.display = 'none';
 		document.getElementById('preloader').style.display = 'none';
 	}, 1000);
 };
-
-//document.getElementById("defaultOpen").click();
 
 function sidebar() {
 
@@ -45,6 +46,71 @@ if (login_status == 'false') {
 	user_buttons.style.display = 'block';
 }
 
+function buttonColor(interestID) {
+	if(saved[interestID]) {
+		profileValues[interestID].style.backgroundColor= "rgba(0, 0, 255, 0.5)";
+		profileValues[interestID].style.color = "white";
+	}
+	else {
+		profileValues[interestID].style.backgroundColor= "rgba(185, 178, 178, 0.71)";
+		profileValues[interestID].style.color = "black";
+	}
+}
+
+function intClick(interestID) {
+	saved[interestID] = !saved[interestID];
+	var saveJSON = JSON.stringify(saved);
+    localStorage.setItem("user_info", saveJSON);
+	buttonColor(interestID);
+}
+
+function populate() { 
+	profileValues.username = document.getElementById('username');
+	profileValues.email = document.getElementById('email');
+	profileValues.newpw = document.getElementById('new_password');
+	profileValues.confirm = document.getElementById('confirm_pw');
+	profileValues.politics = document.getElementById('politics');
+	profileValues.finance = document.getElementById('finance');
+	profileValues.tech = document.getElementById('tech');
+	profileValues.entertainment = document.getElementById('entertainment');
+	profileValues.health = document.getElementById('health');
+	profileValues.sports = document.getElementById('sports');
+	profileValues.update_profile = document.getElementById('update-profile');
+	profileValues.update_pw = document.getElementById('update-pw');
+
+	profileValues["politics"].onclick = function() {intClick("politics")};
+	profileValues["finance"].onclick = function() {intClick("finance")};
+	profileValues["tech"].onclick = function() {intClick("tech")};
+	profileValues["entertainment"].onclick = function() {intClick("entertainment")};
+	profileValues["health"].onclick = function() {intClick("health")};
+	profileValues["sports"].onclick = function() {intClick("sports")};
+	profileValues["update_profile"].onclick = function() {
+		var saveJSON = JSON.stringify(saved);
+    	localStorage.setItem("user_info", saveJSON);
+    	alert('Account Updated');
+	}
+	profileValues["update_pw"].onclick = function() {
+    	if (profileValues["newpw"].value == profileValues["confirm"].value) {
+        	var saveJSON = JSON.stringify(saved);
+    		localStorage.setItem("user_info", saveJSON);
+    		alert('Account Updated');
+	    }
+		else {
+			alert('Please Check the Password');
+		}
+	}
+
+	buttonColor("politics");
+	buttonColor("finance");
+	buttonColor("tech");
+	buttonColor("entertainment");
+	buttonColor("health");
+	buttonColor("sports");
+
+	profileValues["username"].value = saved["username"];
+	profileValues["email"].value = saved["email"];
+}
+
 function sign_out() {
 	localStorage.setItem("is_logged_in", false);
 	window.location.href = 'signin.html';
@@ -69,4 +135,14 @@ function openInfo(evt, InfoName) {
 	// Show the current tab, and add an "active" class to the button that opened the tab
 	document.getElementById(InfoName).style.display = "block";
 	evt.currentTarget.className += " active";
+}
+
+
+// If on profile page, open "Profile" tab as default
+var page = document.location.href.match(/[^\/]+$/)[0];
+if(page == "profile.html"){
+	document.getElementById("defaultOpen").click();
+	var savedJSON = localStorage.getItem("user_info");
+    saved = JSON.parse(savedJSON);
+	populate();
 }

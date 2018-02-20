@@ -4,6 +4,8 @@ let email = document.forms["signup_form"]["email"];
 let username = document.forms["signup_form"]["username"];
 let password = document.forms["signup_form"]["password"];
 let error = document.getElementById('error');
+let save = {"username":"", "email":"", "password":"","politics":false, "tech":false, "finance":false, "sports":false, "entertainment":false, "health":false};
+
 signup_button.addEventListener('click', validate);
 
 //if enter key is presses, submit form
@@ -15,12 +17,23 @@ document.addEventListener("keydown", function(e) {
     return true;
 });
 
+// Change interests array values on checkbox change
+function checkFunction(interestID) {
+    save[interestID] = !save[interestID];
+}
+
 function validate() {
     name = document.forms["signup_form"]["name"];
     email = document.forms["signup_form"]["email"];
+    password = document.forms["signup_form"]["password"];
 
     if (username.checkValidity() && password.checkValidity() && validateEmail()) {
         localStorage.setItem("is_logged_in", true);
+        save["username"] = username.value;
+        save["email"] = email.value;
+        save["password"] = password.value;
+        var saveJSON = JSON.stringify(save);
+        localStorage.setItem("user_info", saveJSON);
         window.location.href = 'index.html';
     } else {
         failed();

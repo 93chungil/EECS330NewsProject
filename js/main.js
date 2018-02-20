@@ -3,14 +3,14 @@ window.onload = function() {
 		document.getElementById('status').style.display = 'none';
 		document.getElementById('preloader').style.display = 'none';
 	}, 1000);
-}
+};
 
 //document.getElementById("defaultOpen").click();
 
 function sidebar() {
 
-	let opener = document.getElementById('sidebar-opener');
-	let wrapper = document.getElementById('wrapper');
+	const opener = document.getElementById('sidebar-opener');
+	const wrapper = document.getElementById('wrapper');
 	opener.addEventListener('click', () => {
 		if (opener.getAttribute('class')) {
 			opener.removeAttribute('class', 'open');
@@ -31,6 +31,24 @@ function sidebar() {
 	};
 };
 sidebar();
+
+let login_status = localStorage.getItem("is_logged_in");
+const user_buttons = document.querySelector('.user_buttons');
+const account_links = document.getElementById('account_links');
+
+if (login_status == 'true') {
+	account_links.style.display = 'block';
+	user_buttons.style.display = 'none';
+}
+if (login_status == 'false') {
+	account_links.style.display = 'none';
+	user_buttons.style.display = 'block';
+}
+
+function sign_out() {
+	localStorage.setItem("is_logged_in", false);
+	window.location.href = 'signin.html';
+}
 
 function openInfo(evt, InfoName) {
 	// Declare all variables

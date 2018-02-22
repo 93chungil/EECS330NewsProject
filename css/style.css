@@ -98,10 +98,17 @@ button:active {
     margin-top: 2px;
     box-shadow: 0 2px 0 #5F5F5F;
 }
+
 .user_buttons {
+    float:right;
+    display: block;
+    margin: 15px;
+}
+
+.user_buttons button {
     display: block;
     float: right;
-    margin: 15px;
+    margin: 0 10px;
 }
 #account_links {
     float: right;

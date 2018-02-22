@@ -21,7 +21,8 @@ function validate() {
 
     if (username.checkValidity() && password.checkValidity()) {
         localStorage.setItem("is_logged_in", true);
-        var savedJSON = localStorage.getItem("user_info");
+        window.name = username.value;
+        var savedJSON = localStorage.getItem("user_info"+username.value);
         let saved = JSON.parse(savedJSON);
         window.location.href = 'index.html';
     } else {

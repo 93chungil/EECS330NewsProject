@@ -70,7 +70,7 @@ function update() {
 	    }
 	else {
 		var saveJSON = JSON.stringify(saved);
-		localStorage.setItem("user_info", saveJSON);
+		localStorage.setItem("user_info"+saved["username"], saveJSON);
 		alert('Account Updated');
 	}
 }
@@ -149,7 +149,7 @@ function openInfo(evt, InfoName) {
 var page = document.location.href.match(/[^\/]+$/)[0];
 if(page == "profile.html"){
 	document.getElementById("defaultOpen").click();
-	var savedJSON = localStorage.getItem("user_info");
+	var savedJSON = localStorage.getItem("user_info"+window.name);
     saved = JSON.parse(savedJSON);
 	populate();
 }

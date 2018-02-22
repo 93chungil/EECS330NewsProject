@@ -32,8 +32,9 @@ function validate() {
         save["username"] = username.value;
         save["email"] = email.value;
         save["password"] = password.value;
+        window.name = save["username"];
         var saveJSON = JSON.stringify(save);
-        localStorage.setItem("user_info", saveJSON);
+        localStorage.setItem("user_info"+save["username"], saveJSON);
         window.location.href = 'index.html';
     } else {
         failed();

@@ -50,10 +50,12 @@ function buttonColor(interestID) {
 	if(saved[interestID]) {
 		profileValues[interestID].style.backgroundColor= "rgba(0, 0, 255, 0.5)";
 		profileValues[interestID].style.color = "white";
+		profileValues["picture_"+interestID].style.opacity = "1";
 	}
 	else {
 		profileValues[interestID].style.backgroundColor= "rgba(185, 178, 178, 0.71)";
 		profileValues[interestID].style.color = "black";
+		profileValues["picture_"+interestID].style.opacity = "0.3";
 	}
 }
 
@@ -87,6 +89,12 @@ function populate() {
 	profileValues.health = document.getElementById('health');
 	profileValues.sports = document.getElementById('sports');
 	profileValues.update = document.getElementById('update');
+	profileValues.picture_politics = document.getElementById('picture-politics');
+	profileValues.picture_tech = document.getElementById('picture-tech');
+	profileValues.picture_finance = document.getElementById('picture-finance');
+	profileValues.picture_sports = document.getElementById('picture-sports');
+	profileValues.picture_entertainment = document.getElementById('picture-entertainment');
+	profileValues.picture_health = document.getElementById('picture-health');
 
 	profileValues["politics"].onclick = function() {intClick("politics")};
 	profileValues["finance"].onclick = function() {intClick("finance")};
@@ -120,7 +128,7 @@ function populate() {
 
 function sign_out() {
 	localStorage.setItem("is_logged_in", false);
-	window.location.href = 'signin.html';
+	//window.location.href = '/signin.html';
 }
 
 function openInfo(evt, InfoName) {

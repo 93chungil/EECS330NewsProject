@@ -34,12 +34,12 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <nav class="sidebar-nav">
-                <li><a href="#0">Politics</a></li>
-                <li><a href="#0">Technology</a> </li>
-                <li><a href="#0">Finance</a></li>
-                <li><a href="#0">Health</a></li>
-                <li><a href="#0">Entertainment</a></li>
-                <li><a href="#0">Sports</a></li>
+                <li><a href="category/politics.html">Politics</a></li>
+                <li><a href="category/tech.html">Technology</a> </li>
+                <li><a href="category/finance.html">Finance</a></li>
+                <li><a href="category/health.html">Health</a></li>
+                <li><a href="category/entertainment.html">Entertainment</a></li>
+                <li><a href="category/sports">Sports</a></li>
             </nav>
         </div>
         <!--End of Sidebar-->
@@ -132,27 +132,27 @@
                                 <div class="interest-header">Interests</div>
                                 <div class="interest-container">
                                     <div class="interest-wrapper">
-                                        <img src="images/politics.jpg" class="interest-image">
+                                        <img src="images/politics.jpg" id="picture-politics">
                                         <button class="button" id="politics">Politics</button>
                                     </div>
                                     <div class="interest-wrapper">
-                                        <img src="images/technology.jpg" class="interest-image">
+                                        <img src="images/technology.jpg" id="picture-tech">
                                         <button class="button" id="tech">Technology</button>
                                     </div>
                                     <div class="interest-wrapper">
-                                        <img src="images/economics.jpg" class="interest-image">
+                                        <img src="images/economics.jpg" id="picture-finance">
                                         <button class="button" id="finance">Finance</button>
                                     </div>
                                     <div class="interest-wrapper">
-                                        <img src="images/health.png" class="interest-image">
+                                        <img src="images/health.png" id="picture-health">
                                         <button class="button" id="health">Health</button>
                                     </div>
                                     <div class="interest-wrapper">
-                                        <img src="images/entertainment.jpg" class="interest-image">
+                                        <img src="images/entertainment.jpg" id="picture-entertainment">
                                         <button class="button" id="entertainment">Entertainment</button>
                                     </div>
                                     <div class="interest-wrapper">
-                                        <img src="images/sports.png" class="interest-image">
+                                        <img src="images/sports.png" id="picture-sports">
                                         <button class="button" id="sports">Sports</button>
                                     </div>
                                 </div>
@@ -162,10 +162,11 @@
                 </section>
             </div>
             <!-- Footer -->
-            <footer id="footer">
+            <footer id="footer" class="footer-wrapper">
                 <div class="footer-bottom">
+                    <div class="marginer"></div>
                     <img src="images/logo.png" alt="New Aggregator">
-                    <a id="copyright">Copyright &copy; 2018. All rights reserved.</a>
+                    <div class="copyright">Copyright &copy; 2018. All rights reserved.</div>
                 </div>
             </footer>
             <!--End of Footer-->

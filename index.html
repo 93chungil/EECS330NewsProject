@@ -34,12 +34,12 @@
     <div id="wrapper">
         <div id="sidebar-wrapper">
             <nav class="sidebar-nav">
-                <li><a href="#0">Politics</a></li>
-                <li><a href="#0">Technology</a> </li>
-                <li><a href="#0">Finance</a></li>
-                <li><a href="#0">Health</a></li>
-                <li><a href="#0">Entertainment</a></li>
-                <li><a href="#0">Sports</a></li>
+                <li><a href="category/politics.html">Politics</a></li>
+                <li><a href="category/tech.html">Technology</a> </li>
+                <li><a href="category/finance.html">Finance</a></li>
+                <li><a href="category/health.html">Health</a></li>
+                <li><a href="category/entertainment.html">Entertainment</a></li>
+                <li><a href="category/sports">Sports</a></li>
             </nav>
         </div>
         <!--End of Sidebar-->
@@ -67,18 +67,22 @@
             <!--End of Header-->
 
             <div class="spacer-page">
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <h3 style="text-align: center;">News feed goes here</h3>
+                <section id="topics">
+                    <div class="container">
+                        <button class="topics-button" id="topics-trump" onclick="window.location.href='topics/trump.html'">#Trump</button>
+                        <button class="topics-button" id="topics-trump" onclick="window.location.href='topics/blockchain.html'">#Blockchain</button>
+                        <button class="topics-button" id="topics-trump" onclick="window.location.href='topics/interestrate.html'">#Interest Rates</button>
+                        <button class="topics-button" id="topics-trump" onclick="window.location.href='topics/cripsr.html'">#CRISPR</button>
+                        <button class="topics-button" id="topics-trump" onclick="window.location.href='topics/kendrick.html'">#Kendrick Lamar</button>
+                        <button class="topics-button" id="topics-trump" onclick="window.location.href='topics/efl.html'">#EFL Cup Final</button>
+                    </div>
+                </section>
             </div>
             <!-- Footer -->
-            <footer id="footer">
+            <footer id="footer" class="footer-wrapper">
                 <div class="footer-bottom">
                     <img src="images/logo.png" alt="New Aggregator">
-                    <a id="copyright">Copyright &copy; 2018. All rights reserved.</a>
+                    <div class="copyright">Copyright &copy; 2018. All rights reserved.</div>
                 </div>
             </footer>
             <!--End of Footer-->

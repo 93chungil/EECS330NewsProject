@@ -304,6 +304,10 @@ p {
     align-content: center;
     display: block;
 }
+
+#trump {
+    padding-top: 10%;
+}
 /*-------------- Topics ------------------*/
 .topics-button {
     display: block;

@@ -1,9 +1,9 @@
 /*------------------------- General Properties -------------------------*/
+
 html {
     height: 100%;
     box-sizing: border-box;
 }
-
 *, *:after, *:before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -19,6 +19,7 @@ body, html {
     padding: 0px;
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
+    font-size: 150%;
 }
 body {
     color: #2f2f2f;
@@ -26,7 +27,6 @@ body {
     background-color: #fff;
     position: left;
 }
-
 a {
     color: #2f2f2f;
     text-decoration: none;
@@ -103,21 +103,18 @@ button {
 }
 button:active {
     margin-top: 2px;
-    box-shadow: 0 2px 0 #5F5F5F;
+    box-shadow: 0 2px 0 #84B084;
 }
-
 .user_buttons {
-    float:right;
+    float: right;
     display: block;
     margin: 15px;
 }
-
 .user_buttons button {
     display: block;
     float: right;
     margin: 0 10px;
 }
-
 #account_links {
     float: right;
     margin: 15px;
@@ -297,7 +294,6 @@ p {
 #user-profile {
     padding-top: 10%;
 }
-
 #topics {
     align-self: center;
     padding-top: 10%;
@@ -305,10 +301,14 @@ p {
     display: block;
 }
 
+<<<<<<< HEAD
 #trump {
     padding-top: 10%;
 }
+=======
+>>>>>>> 2dd04c6d0838e534442bfb447c22eb4d6df1d66f
 /*-------------- Topics ------------------*/
+
 .topics-button {
     display: block;
     font-size: 50px;
@@ -322,7 +322,8 @@ p {
     margin-top: 0px;
     margin-bottom: 20px;
     text-align: left;
-    background: #f1f1f1;;
+    background: #f1f1f1;
+    ;
 }
 
 /*-------------- Profile Tab ------------------*/
@@ -369,28 +370,26 @@ p {
     border: 1px solid #ccc;
     border-top: none;
     height: 85%;
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
-}
-
-.tabcontent table{
-    height: 70%;
-    width: 100%
-}
-
-.tabcontent table th {
-    width: 40%;
-}
-
-.tabcontent table td input {
-    width: 80%;
-}
-
-.tabcontent button{
-   position: absolute;
-   margin-top: 5%;
     animation: fadeEffect 1s;
     /* Fading effect takes 1 second */
 }
+.tabcontent table {
+    height: 70%;
+    width: 100%
+}
+.tabcontent table th {
+    width: 40%;
+}
+.tabcontent table td input {
+    width: 80%;
+}
+.tabcontent button {
+    position: absolute;
+    margin-top: 5%;
+    animation: fadeEffect 1s;
+    /* Fading effect takes 1 second */
+}
+
 /* Go from zero to full opacity */
 
 @keyframes fadeEffect {
@@ -403,6 +402,7 @@ p {
 }
 
 /*-------------- Interests ------------------*/
+
 .interest-header {
     float: left;
     width: 100%;
@@ -410,24 +410,21 @@ p {
     font-size: 20px;
     text-align: center;
 }
-
 .interest-wrapper {
     position: relative;
     float: left;
     margin: 1%;
     width: 31%;
 }
-
 .interest-wrapper button {
     background-color: rgba(185, 178, 178, 0.71);
     width: 100%;
     padding: 0;
     text-align: center;
-    position:absolute;
-    bottom:10px;
+    position: absolute;
+    bottom: 10px;
     font-weight: bold;
 }
-
 .interest-container {
     height: 85%;
     width: 100%;
@@ -444,7 +441,6 @@ p {
     margin-top: 254.41px;
     height: 254.41px;
 }
-
 .footer-bottom {
     width: 100%;
     background: #000;

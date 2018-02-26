@@ -298,6 +298,26 @@ h4 {
     padding-top: 40px;
 }
 
+/*------------------------------ Article Styles -----------------------------*/
+
+.article {
+    padding: 10px 10px;
+    border-radius: 4px;
+    -webkit-transition: box-shadow .2s;
+    -moz-transition: box-shadow .2s;
+    transition: box-shadow .2s;
+}
+.article:hover {
+    box-shadow: 9px 7px 40px -6px rgba(0, 0, 0, 0.25);
+}
+.article_title {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.article_headline {
+    line-height: 20px;
+}
+
 /*-------------- Footer ------------------*/
 
 .footer-wrapper {

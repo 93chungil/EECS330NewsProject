@@ -163,3 +163,8 @@ function topic(id) {
 	localStorage.setItem("topic", id);
 	window.location.href = './topic.html';
 }
+
+function c_topic(id) {
+	localStorage.setItem("topic", id);
+	window.location.href = '../topic.html';
+}

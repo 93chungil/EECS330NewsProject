@@ -47,37 +47,35 @@ if (login_status == 'false') {
 }
 
 function buttonColor(interestID) {
-	if(saved[interestID]) {
-		profileValues[interestID].style.backgroundColor= "rgba(0, 0, 255, 0.5)";
+	if (saved[interestID]) {
+		profileValues[interestID].style.backgroundColor = "rgba(0, 0, 255, 0.5)";
 		profileValues[interestID].style.color = "white";
-		profileValues["picture_"+interestID].style.opacity = "1";
-	}
-	else {
-		profileValues[interestID].style.backgroundColor= "rgba(185, 178, 178, 0.71)";
+		profileValues["picture_" + interestID].style.opacity = "1";
+	} else {
+		profileValues[interestID].style.backgroundColor = "rgba(185, 178, 178, 0.71)";
 		profileValues[interestID].style.color = "black";
-		profileValues["picture_"+interestID].style.opacity = "0.3";
+		profileValues["picture_" + interestID].style.opacity = "0.3";
 	}
 }
 
 function intClick(interestID) {
 	saved[interestID] = !saved[interestID];
 	var saveJSON = JSON.stringify(saved);
-    localStorage.setItem("user_info", saveJSON);
+	localStorage.setItem("user_info", saveJSON);
 	buttonColor(interestID);
 }
 
 function update() {
 	if (profileValues["newpw"].value != profileValues["confirm"].value) {
-        alert('Please Check the Password');
-	    }
-	else {
+		alert('Please Check the Password');
+	} else {
 		var saveJSON = JSON.stringify(saved);
-		localStorage.setItem("user_info"+saved["username"], saveJSON);
+		localStorage.setItem("user_info" + saved["username"], saveJSON);
 		alert('Account Updated');
 	}
 }
 
-function populate() { 
+function populate() {
 	profileValues.username = document.getElementById('username');
 	profileValues.email = document.getElementById('email');
 	profileValues.newpw = document.getElementById('new_password');
@@ -96,23 +94,23 @@ function populate() {
 	profileValues.picture_entertainment = document.getElementById('picture-entertainment');
 	profileValues.picture_health = document.getElementById('picture-health');
 
-	profileValues["politics"].onclick = function() {intClick("politics")};
-	profileValues["finance"].onclick = function() {intClick("finance")};
-	profileValues["tech"].onclick = function() {intClick("tech")};
-	profileValues["entertainment"].onclick = function() {intClick("entertainment")};
-	profileValues["health"].onclick = function() {intClick("health")};
-	profileValues["sports"].onclick = function() {intClick("sports")};
-	profileValues["update"].onclick = function() {update()};
+	profileValues["politics"].onclick = function() { intClick("politics") };
+	profileValues["finance"].onclick = function() { intClick("finance") };
+	profileValues["tech"].onclick = function() { intClick("tech") };
+	profileValues["entertainment"].onclick = function() { intClick("entertainment") };
+	profileValues["health"].onclick = function() { intClick("health") };
+	profileValues["sports"].onclick = function() { intClick("sports") };
+	profileValues["update"].onclick = function() { update() };
 
 	//profileValues["update"].addEventListener('click', update);
 
 	//if enter key is presses, submit form
 	document.addEventListener("keydown", function(e) {
-	    if (e.which == 13 || e.keyCode == 13) {
-	        update();
-	        return false;
-	    }
-	    return true;
+		if (e.which == 13 || e.keyCode == 13) {
+			update();
+			return false;
+		}
+		return true;
 	});
 
 	buttonColor("politics");
@@ -128,7 +126,7 @@ function populate() {
 
 function sign_out() {
 	localStorage.setItem("is_logged_in", false);
-	//window.location.href = '/signin.html';
+	window.location.href = '/signin.html';
 }
 
 function openInfo(evt, InfoName) {
@@ -152,12 +150,16 @@ function openInfo(evt, InfoName) {
 	evt.currentTarget.className += " active";
 }
 
-
 // If on profile page, open "Profile" tab as default
 var page = document.location.href.match(/[^\/]+$/)[0];
-if(page == "profile.html"){
+if (page == "profile.html") {
 	document.getElementById("defaultOpen").click();
-	var savedJSON = localStorage.getItem("user_info"+window.name);
-    saved = JSON.parse(savedJSON);
+	var savedJSON = localStorage.getItem("user_info" + window.name);
+	saved = JSON.parse(savedJSON);
 	populate();
+}
+
+function topic(id) {
+	localStorage.setItem("topic", id);
+	window.location.href = './topic.html';
 }

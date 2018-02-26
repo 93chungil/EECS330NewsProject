@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<meta charset="utf-8">
+	<title>News Aggregator</title>
+	<meta content="IE=edge" http-equiv="X-UA-Compatible">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=0" name="viewport">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="theme-color" content="#000">
+	<!--Favicon-->
+	<link href="images/favicon.png" rel="shortcut icon">
+	<!--Style Sheets-->
+	<link href="css/style.css" rel="stylesheet">
+	<link href="css/milligram.css" rel="stylesheet">
+	<link href="css/form.css" rel="stylesheet">
+
+	<!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,500,700" rel="stylesheet">
+</head>
+
+<body>
+	<!--Preloader-->
+	<div id="preloader">
+
+		<div id="status">
+			<img alt="logo" src="images/logo.png">
+		</div>
+	</div>
+	<!--End of Preloader-->
+	<!--Slide in Sidebar-->
+	<div id="wrapper">
+		<div id="sidebar-wrapper">
+			<nav class="sidebar-nav">
+				<div class="sidebar-top">
+					<img src="images/favicon.png" alt="">
+				</div>
+				<li><a href="category/politics.html">Politics</a></li>
+				<li><a href="category/tech.html">Technology</a> </li>
+				<li><a href="category/finance.html">Finance</a></li>
+				<li><a href="category/health.html">Health</a></li>
+				<li><a href="category/entertainment.html">Entertainment</a></li>
+				<li><a href="category/sports.html">Sports</a></li>
+			</nav>
+		</div>
+		<!--End of Sidebar-->
+		<!--Main Content Wrapper-->
+		<div id="page-content-wrapper">
+			<!--Header-->
+			<header class="header">
+				<div href="#menu-toggle" id="sidebar-opener">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+				<div class="user_buttons">
+					<button id="sign-up-button" onclick="window.location.href='signup.html'">Sign Up</button>
+					<button id="sign-in-button" onclick="window.location.href='signin.html'">Sign In</button>
+				</div>
+				<div id="account_links">
+					<a href="javascript:sign_out()" title="Sign Out">Sign Out</a>
+					<h3 class="vert_line"> | </h3>
+					<a href="profile.html" title="Your profile">Profile</a>
+				</div>
+				<a href="index.html"><img id="logo" src="images/straight_logo.png" alt="News Aggregator"></a>
+			</header>
+			<!--End of Header-->
+
+			<div class="page">
+				<div class="wide_container">
+					<div class="row">
+
+
+						<div class="column column-35 left-article">
+							<p>news article</p>
+						</div>
+						<div class="column t_feed">
+
+							<script>
+							! function(d, s, id) {
+								var js, fjs = d.getElementsByTagName(s)[0],
+									p = /^http:/.test(d.location) ? 'http' : 'https';
+								if (!d.getElementById(id)) {
+									js = d.createElement(s);
+									js.id = id;
+									js.src = p + "://platform.twitter.com/widgets.js";
+									fjs.parentNode.insertBefore(js, fjs);
+								}
+							}(document, "script", "twitter-wjs");
+							</script>
+
+						</div>
+						<div class="column column-35 right-article">
+							<p>news article</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Footer -->
+			<footer id="footer" class="footer-wrapper">
+				<div class="footer-bottom">
+					<img src="images/logo.png" alt="News Aggregator">
+					<div class="copyright">Copyright &copy; 2018. All rights reserved.</div>
+				</div>
+			</footer>
+			<!--End of Footer-->
+			<!--End of Content Wrapper-->
+		</div>
+	</div>
+	<script src="js/main.js" type="text/javascript"></script>
+	<script src="js/topic.js" type="text/javascript"></script>
+
+</body>
+
+</html>

@@ -40,6 +40,13 @@ body, html {
     position: relative;
     width: 100%;
 }
+.wide_container {
+    margin: 0 auto;
+    max-width: 90%;
+    padding: 2.0rem 2.0rem;
+    position: relative;
+    width: 100%;
+}
 .row {
     display: flex;
     flex-direction: column;

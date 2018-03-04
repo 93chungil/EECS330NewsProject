@@ -357,7 +357,6 @@ h4 {
 .commentList {
     padding:0;
     list-style:none;
-    max-height:200px;
     overflow:auto;
     margin: 0;
 }
@@ -377,10 +376,6 @@ h4 {
     height:100%;
     float:left;
 }
-.commenterImage img {
-    width:100%;
-    border-radius:50%;
-}
 .commentText p {
     margin:0;
 }
@@ -392,6 +387,21 @@ h4 {
 .actionBox {
     border-top:1px dotted #bbb;
     padding:10px;
+}
+
+.usernameText {
+    width: 60%;
+    float: right;
+}
+
+.reactWrapper {
+    float: right;
+    width: 20%;
+    height: 20px;
+}
+
+.reactWrapper span {
+    vertical-align: middle;
 }
 /*-------------- Footer ------------------*/
 

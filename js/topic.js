@@ -55,3 +55,96 @@ function get_articles() {
 	}
 }
 get_articles();
+
+// Dynamic Comment Integration
+var savedcomments = localStorage.getItem(curr_topic+"comments");
+let comments_array;
+if (savedcomments == null) {
+	comments_array = [{userID: "chungLee", comment: "I think this website is awesome!", datetime: "Sat Mar 03 2018 21:07:02", likes: 100, dislikes: 1}];
+}
+else {
+	comments_array = JSON.parse(savedcomments);
+}
+
+function initialize_comments() {
+	var commentlist = document.getElementById("commentListID");
+	for (i = 0; i < comments_array.length; i++) {
+		var node = document.createElement("LI");
+		var textnode = document.createTextNode(comments_array[i]["userID"]);
+		node.appendChild(textnode);
+
+		var div = document.createElement('div');
+		div.className = 'commentText';
+		var p = document.createElement('p');
+		var commentnode = document.createTextNode(comments_array[i]["comment"])
+		p.appendChild(commentnode);
+		div.appendChild(p);
+		var span = document.createElement('span');
+		span.className = "date sub-text";
+		var datenode = document.createTextNode(comments_array[i]["datetime"]);
+		span.appendChild(datenode);
+		div.appendChild(span);
+
+		node.appendChild(div);
+
+		commentlist.append(node);
+	}
+}
+
+function add_comment() {
+	var status = localStorage.getItem("is_logged_in");
+
+	if (status == "true"){
+		var commentlist = document.getElementById("commentListID");
+		var savedJSON = localStorage.getItem("user_info" + window.name);
+		var userdata = JSON.parse(savedJSON);
+
+		var commentInput = document.getElementById("commentInput").value;
+		var username = userdata["username"];
+		var commentdate = new Date().toString();
+
+		var timeformat = commentdate.split(" ");
+
+		commentdate = timeformat[0] + " " + timeformat[1] + " " + timeformat[2] + " " + timeformat[3] + " " + timeformat[4];
+
+		var newcomment_dict = {userID: username, comment: commentInput, datetime: commentdate, likes: 0, dislikes: 0};
+		comments_array.push(newcomment_dict);
+		append_comment(comments_array.length-1);
+		savedcomments = JSON.stringify(comments_array);
+		localStorage.setItem(curr_topic+"comments", savedcomments);
+		return true;
+	}
+	else {
+		var error = document.getElementById("comment-error");
+		error.innerHTML = "Please sign in before adding comments";
+		error.style.opacity = '1';
+    	error.style.color = '#6EC867';
+    	return false;
+	}
+}
+
+function append_comment(index) {
+	var i = index;
+	var commentlist = document.getElementById("commentListID");
+	var node = document.createElement("LI");
+	var textnode = document.createTextNode(comments_array[i]["userID"]);
+	node.appendChild(textnode);
+
+	var div = document.createElement('div');
+	div.className = 'commentText';
+	var p = document.createElement('p');
+	var commentnode = document.createTextNode(comments_array[i]["comment"])
+	p.appendChild(commentnode);
+	div.appendChild(p);
+	var span = document.createElement('span');
+	span.className = "date sub-text";
+	var datenode = document.createTextNode(comments_array[i]["datetime"]);
+	span.appendChild(datenode);
+	div.appendChild(span);
+
+	node.appendChild(div);
+
+	commentlist.append(node);
+}
+
+initialize_comments();

@@ -65,35 +65,87 @@ if (savedcomments == null) {
 else {
 	comments_array = JSON.parse(savedcomments);
 }
+var savedJSON = localStorage.getItem("user_info" + window.name);
+let userdata = JSON.parse(savedJSON);
+
+let comments_like;
+if (userdata != null) {
+	var savedlikes = localStorage.getItem(userdata["username"]+curr_topic+"likes");
+	if (savedlikes == null) {
+		comments_like = {};
+	}
+	else {
+		comments_like = JSON.parse(savedlikes); 
+	}
+}
+else {
+	comments_like = null;
+}
 
 function increase_like(ele) {
-	var comment = ele.id;
-	comment = comment.split(";|,,")[0];
-	for(var i=0; i<comments_array.length; i++) {
-		if (comments_array[i]["comment"] == comment){
-			comments_array[i]["likes"]++; 
-			var numberSpan = document.getElementById(comment+";|,,like");
-			numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-			break;
+	if (userdata != null) {
+		var comment = ele.id;
+		comment = comment.split(";|,,")[0];
+		for(var i=0; i<comments_array.length; i++) {
+			if (comments_array[i]["comment"] == comment){
+				if (comments_like[comment] == "none") {
+					comments_array[i]["likes"]++; 
+					var numberSpan = document.getElementById(comment+";|,,like");
+					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+				}
+				else if (comments_like[comment] == "dislike") {
+					comments_array[i]["dislikes"]--;
+					comments_array[i]["likes"]++; 
+					var numberSpan = document.getElementById(comment+";|,,like");
+					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					var secondSpan = document.getElementById(comment+";|,,dislike");
+					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+				}
+				comments_like[comment] = "like";
+
+				savedlikes = JSON.stringify(comments_like);
+				localStorage.setItem(userdata["username"]+curr_topic+"likes", savedlikes);
+
+				break;
+			}
 		}
+
+		sort_comments();
 	}
 
-	sort_comments();
+	
 }
 
 function increase_dislike(ele) {
-	var comment = ele.id;
-	comment = comment.split(";|,,")[0];
-	for(var i=0; i<comments_array.length; i++) {
-		if (comments_array[i]["comment"] == comment){
-			comments_array[i]["dislikes"]++; 
-			var numberSpan = document.getElementById(comment+";|,,dislike");
-			numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
-			break;
-		}
-	}
+	if (userdata != null) {
+		var comment = ele.id;
+		comment = comment.split(";|,,")[0];
+		for(var i=0; i<comments_array.length; i++) {
+			if (comments_array[i]["comment"] == comment){
+				if (comments_like[comment] == "none") {
+					comments_array[i]["dislikes"]++; 
+					var numberSpan = document.getElementById(comment+";|,,dislike");
+					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+				}
+				else if (comments_like[comment] == "like") {
+					comments_array[i]["likes"]--;
+					comments_array[i]["dislikes"]++;
+					var numberSpan = document.getElementById(comment+";|,,like");
+					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					var secondSpan = document.getElementById(comment+";|,,dislike");
+					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+				}
+				comments_like[comment] = "dislike";
+				
+				savedlikes = JSON.stringify(comments_like);
+				localStorage.setItem(userdata["username"]+curr_topic+"likes", savedlikes);
 
-	sort_comments();
+				break;
+			}
+		}
+
+		sort_comments();
+	}
 }
 
 function arraymove(arr, fromIndex, toIndex) {
@@ -203,6 +255,10 @@ function initialize_comments() {
 	var commentlist = document.getElementById("commentListID");
 	for (var i = 0; i < comments_array.length; i++) {
 		dynamic_add(commentlist, i);
+		if(comments_like != null && !(comments_array[i]["comment"] in Object.keys(comments_like))) {
+			var comment = comments_array[i]["comment"]
+			comments_like[comment] = "none";
+		}
 	}
 }
 
@@ -211,21 +267,30 @@ function add_comment() {
 
 	if (status == "true"){
 		var commentlist = document.getElementById("commentListID");
-		var savedJSON = localStorage.getItem("user_info" + window.name);
-		var userdata = JSON.parse(savedJSON);
 
-		var commentInput = document.getElementById("commentInput").value;
-		var username = userdata["username"];
-		var commentdate = new Date().toString();
+		if(userdata != null) {
+			var commentInput = document.getElementById("commentInput").value;
+			var username = userdata["username"];
+			var commentdate = new Date().toString();
 
-		var timeformat = commentdate.split(" ");
+			var timeformat = commentdate.split(" ");
 
-		commentdate = timeformat[0] + " " + timeformat[1] + " " + timeformat[2] + " " + timeformat[3] + " " + timeformat[4];
+			commentdate = timeformat[0] + " " + timeformat[1] + " " + timeformat[2] + " " + timeformat[3] + " " + timeformat[4];
 
-		var newcomment_dict = {userID: username, comment: commentInput, datetime: commentdate, likes: 0, dislikes: 0};
-		comments_array.splice(0, 0,newcomment_dict);
-		append_comment(comments_array.length-1);
-		return true;
+			var newcomment_dict = {userID: username, comment: commentInput, datetime: commentdate, likes: 0, dislikes: 0};
+
+			comments_like[commentInput] = "none";
+			comments_array.splice(0, 0,newcomment_dict);
+			append_comment(comments_array.length-1);
+			return true;
+		}
+		else {
+			var error = document.getElementById("comment-error");
+			error.innerHTML = "Please sign in before adding comments";
+			error.style.opacity = '1';
+	    	error.style.color = '#6EC867';
+	    	return false;
+		}
 	}
 	else {
 		var error = document.getElementById("comment-error");

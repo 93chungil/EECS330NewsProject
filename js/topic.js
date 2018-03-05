@@ -92,6 +92,7 @@ function increase_like(ele) {
 					comments_array[i]["likes"]++; 
 					var numberSpan = document.getElementById(comment+";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					comments_like[comment] = "like";
 				}
 				else if (comments_like[comment] == "dislike") {
 					comments_array[i]["dislikes"]--;
@@ -100,8 +101,15 @@ function increase_like(ele) {
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
 					var secondSpan = document.getElementById(comment+";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					comments_like[comment] = "like";
 				}
-				comments_like[comment] = "like";
+				else {
+					comments_array[i]["likes"]--; 
+					var numberSpan = document.getElementById(comment+";|,,like");
+					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					comments_like[comment] = "none";
+				}
+
 
 				savedlikes = JSON.stringify(comments_like);
 				localStorage.setItem(userdata["username"]+curr_topic+"likes", savedlikes);
@@ -126,6 +134,7 @@ function increase_dislike(ele) {
 					comments_array[i]["dislikes"]++; 
 					var numberSpan = document.getElementById(comment+";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					comments_like[comment] = "dislike";
 				}
 				else if (comments_like[comment] == "like") {
 					comments_array[i]["likes"]--;
@@ -134,9 +143,15 @@ function increase_dislike(ele) {
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
 					var secondSpan = document.getElementById(comment+";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					comments_like[comment] = "dislike";
 				}
-				comments_like[comment] = "dislike";
-				
+				else {
+					comments_array[i]["dislikes"]--; 
+					var numberSpan = document.getElementById(comment+";|,,dislike");
+					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					comments_like[comment] = "none";
+				}
+
 				savedlikes = JSON.stringify(comments_like);
 				localStorage.setItem(userdata["username"]+curr_topic+"likes", savedlikes);
 
@@ -255,7 +270,7 @@ function initialize_comments() {
 	var commentlist = document.getElementById("commentListID");
 	for (var i = 0; i < comments_array.length; i++) {
 		dynamic_add(commentlist, i);
-		if(comments_like != null && !(comments_array[i]["comment"] in Object.keys(comments_like))) {
+		if(comments_like != null && !(comments_array[i]["comment"] in comments_like)) {
 			var comment = comments_array[i]["comment"]
 			comments_like[comment] = "none";
 		}

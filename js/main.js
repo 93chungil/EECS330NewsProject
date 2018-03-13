@@ -126,7 +126,7 @@ function populate() {
 
 function sign_out() {
 	localStorage.setItem("is_logged_in", false);
-	window.location.href = '/signin.html';
+	window.location.href = './signin.html';
 }
 
 function openInfo(evt, InfoName) {
@@ -157,6 +157,35 @@ if (page == "profile.html") {
 	var savedJSON = localStorage.getItem("user_info" + window.name);
 	saved = JSON.parse(savedJSON);
 	populate();
+} else if (page = 'index.html') {
+	let user_data = localStorage.getItem("user_info" + window.name);
+	user_data = JSON.parse(user_data);
+	logged_in = localStorage.getItem('is_logged_in');
+	logged_in = JSON.parse(logged_in);
+	if (logged_in == null || logged_in == 'false') {
+		logged_in = false;
+	} else {
+		logged_in = true;
+	}
+
+	if (!logged_in || user_data.entertainment) {
+		document.getElementById('entertainment_div').style.display = 'block';
+	}
+	if (!logged_in || user_data.finance) {
+		document.getElementById('finance_div').style.display = 'block';
+	}
+	if (!logged_in || user_data.health) {
+		document.getElementById('health_div').style.display = 'block';
+	}
+	if (!logged_in || user_data.tech) {
+		document.getElementById('tech_div').style.display = 'block';
+	}
+	if (!logged_in || user_data.sports) {
+		document.getElementById('sports_div').style.display = 'block';
+	}
+	if (!logged_in || user_data.politics) {
+		document.getElementById('politics_div').style.display = 'block';
+	}
 }
 
 function topic(id) {

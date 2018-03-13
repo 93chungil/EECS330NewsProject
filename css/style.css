@@ -297,6 +297,9 @@ p {
 h4 {
     padding-top: 40px;
 }
+.topic_section {
+    display: none;
+}
 
 /*------------------------------ Article Styles -----------------------------*/
 
@@ -319,32 +322,29 @@ h4 {
 }
 
 /*------------------------------ Comment Box -----------------------------*/
-@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 
+@import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css);
 .detailBox {
-    width:100%;
-    border:1px solid #bbb;
-    margin:50px;
+    width: 100%;
+    border: 1px solid #bbb;
+    margin: 50px;
 }
 .titleBox {
-    background-color:#fdfdfd;
-    padding:10px;
+    background-color: #fdfdfd;
+    padding: 10px;
 }
-.titleBox label{
-  color:#444;
-  margin:0;
-  display:inline-block;
+.titleBox label {
+    color: #444;
+    margin: 0;
+    display: inline-block;
 }
-
 .actionBox .form-button * {
-    width:20%;
+    width: 20%;
 }
-
 .actionBox .form-group {
     margin-top: 3px;
     margin-bottom: 10px;
 }
-
 .actionBox .form-group input {
     border-radius: 10px;
     border: 1px solid #BADA55;
@@ -352,57 +352,55 @@ h4 {
     width: 100%;
 }
 .taskDescription {
-    margin-top:10px 0;
+    margin-top: 10px 0;
 }
 .commentList {
-    padding:0;
-    list-style:none;
-    overflow:auto;
+    padding: 0;
+    list-style: none;
+    overflow: auto;
     margin: 0;
 }
 .commentList li {
     border-radius: 10px;
     border: 1px solid #BADA55;
     padding: 5px;
-    margin:0;
-    margin-bottom:10px;
+    margin: 0;
+    margin-bottom: 10px;
 }
-.commentList li > div {
-    display:table-cell;
+.commentList li>div {
+    display: table-cell;
 }
 .commenterImage {
-    width:30px;
-    margin-right:5px;
-    height:100%;
-    float:left;
+    width: 30px;
+    margin-right: 5px;
+    height: 100%;
+    float: left;
 }
 .commentText p {
-    margin:0;
+    margin: 0;
 }
 .sub-text {
-    color:#aaa;
-    font-family:verdana;
-    font-size:11px;
+    color: #aaa;
+    font-family: verdana;
+    font-size: 11px;
 }
 .actionBox {
-    border-top:1px dotted #bbb;
-    padding:10px;
+    border-top: 1px dotted #bbb;
+    padding: 10px;
 }
-
 .usernameText {
     width: 60%;
     float: right;
 }
-
 .reactWrapper {
     float: right;
     width: 20%;
     height: 20px;
 }
-
 .reactWrapper span {
     vertical-align: middle;
 }
+
 /*-------------- Footer ------------------*/
 
 .footer-wrapper {

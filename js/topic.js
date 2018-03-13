@@ -25,7 +25,7 @@ function get_articles() {
 
 	function res_listen() {
 		const data = JSON.parse(this.responseText);
-		console.log(data.articles);
+		//console.log(data.articles);
 		display_articles(data);
 	}
 
@@ -57,12 +57,11 @@ function get_articles() {
 get_articles();
 
 // Dynamic Comment Integration
-var savedcomments = localStorage.getItem(curr_topic+"comments");
+var savedcomments = localStorage.getItem(curr_topic + "comments");
 let comments_array;
 if (savedcomments == null) {
-	comments_array = [{userID: "chungLee", comment: "I think this website is awesome!", datetime: "Sat Mar 03 2018 21:07:02", likes: 0, dislikes: 0}];
-}
-else {
+	comments_array = [{ userID: "chungLee", comment: "I think this website is awesome!", datetime: "Sat Mar 03 2018 21:07:02", likes: 0, dislikes: 0 }];
+} else {
 	comments_array = JSON.parse(savedcomments);
 }
 var savedJSON = localStorage.getItem("user_info" + window.name);
@@ -70,15 +69,13 @@ let userdata = JSON.parse(savedJSON);
 
 let comments_like;
 if (userdata != null) {
-	var savedlikes = localStorage.getItem(userdata["username"]+curr_topic+"likes");
+	var savedlikes = localStorage.getItem(userdata["username"] + curr_topic + "likes");
 	if (savedlikes == null) {
 		comments_like = {};
+	} else {
+		comments_like = JSON.parse(savedlikes);
 	}
-	else {
-		comments_like = JSON.parse(savedlikes); 
-	}
-}
-else {
+} else {
 	comments_like = null;
 }
 
@@ -86,33 +83,30 @@ function increase_like(ele) {
 	if (userdata != null) {
 		var comment = ele.id;
 		comment = comment.split(";|,,")[0];
-		for(var i=0; i<comments_array.length; i++) {
-			if (comments_array[i]["comment"] == comment){
+		for (var i = 0; i < comments_array.length; i++) {
+			if (comments_array[i]["comment"] == comment) {
 				if (comments_like[comment] == "none") {
-					comments_array[i]["likes"]++; 
-					var numberSpan = document.getElementById(comment+";|,,like");
+					comments_array[i]["likes"]++;
+					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
 					comments_like[comment] = "like";
-				}
-				else if (comments_like[comment] == "dislike") {
+				} else if (comments_like[comment] == "dislike") {
 					comments_array[i]["dislikes"]--;
-					comments_array[i]["likes"]++; 
-					var numberSpan = document.getElementById(comment+";|,,like");
+					comments_array[i]["likes"]++;
+					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-					var secondSpan = document.getElementById(comment+";|,,dislike");
+					var secondSpan = document.getElementById(comment + ";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
 					comments_like[comment] = "like";
-				}
-				else {
-					comments_array[i]["likes"]--; 
-					var numberSpan = document.getElementById(comment+";|,,like");
+				} else {
+					comments_array[i]["likes"]--;
+					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
 					comments_like[comment] = "none";
 				}
 
-
 				savedlikes = JSON.stringify(comments_like);
-				localStorage.setItem(userdata["username"]+curr_topic+"likes", savedlikes);
+				localStorage.setItem(userdata["username"] + curr_topic + "likes", savedlikes);
 
 				break;
 			}
@@ -121,39 +115,36 @@ function increase_like(ele) {
 		sort_comments();
 	}
 
-	
 }
 
 function increase_dislike(ele) {
 	if (userdata != null) {
 		var comment = ele.id;
 		comment = comment.split(";|,,")[0];
-		for(var i=0; i<comments_array.length; i++) {
-			if (comments_array[i]["comment"] == comment){
+		for (var i = 0; i < comments_array.length; i++) {
+			if (comments_array[i]["comment"] == comment) {
 				if (comments_like[comment] == "none") {
-					comments_array[i]["dislikes"]++; 
-					var numberSpan = document.getElementById(comment+";|,,dislike");
+					comments_array[i]["dislikes"]++;
+					var numberSpan = document.getElementById(comment + ";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
 					comments_like[comment] = "dislike";
-				}
-				else if (comments_like[comment] == "like") {
+				} else if (comments_like[comment] == "like") {
 					comments_array[i]["likes"]--;
 					comments_array[i]["dislikes"]++;
-					var numberSpan = document.getElementById(comment+";|,,like");
+					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-					var secondSpan = document.getElementById(comment+";|,,dislike");
+					var secondSpan = document.getElementById(comment + ";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
 					comments_like[comment] = "dislike";
-				}
-				else {
-					comments_array[i]["dislikes"]--; 
-					var numberSpan = document.getElementById(comment+";|,,dislike");
+				} else {
+					comments_array[i]["dislikes"]--;
+					var numberSpan = document.getElementById(comment + ";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
 					comments_like[comment] = "none";
 				}
 
 				savedlikes = JSON.stringify(comments_like);
-				localStorage.setItem(userdata["username"]+curr_topic+"likes", savedlikes);
+				localStorage.setItem(userdata["username"] + curr_topic + "likes", savedlikes);
 
 				break;
 			}
@@ -164,37 +155,37 @@ function increase_dislike(ele) {
 }
 
 function arraymove(arr, fromIndex, toIndex) {
-    var element = arr[fromIndex];
-    arr.splice(fromIndex, 1);
-    arr.splice(toIndex, 0, element);
+	var element = arr[fromIndex];
+	arr.splice(fromIndex, 1);
+	arr.splice(toIndex, 0, element);
 }
 
 function sort_comments() {
 	var topscore = -999999;
 	var topindex;
-	for(var i=0;i<comments_array.length; i++) {
-		var score = comments_array[i]["likes"]-comments_array[i]["dislikes"];
+	for (var i = 0; i < comments_array.length; i++) {
+		var score = comments_array[i]["likes"] - comments_array[i]["dislikes"];
 		if (score > topscore) {
 			topindex = i;
 			topscore = score;
 		}
 	}
 	var ul = document.getElementById('commentListID');
-  	if (ul) {
-	    while (ul.firstChild) {
-	      ul.removeChild(ul.firstChild);
-	    }
+	if (ul) {
+		while (ul.firstChild) {
+			ul.removeChild(ul.firstChild);
+		}
 	}
 	arraymove(comments_array, topindex, 0);
 	initialize_comments();
 	savedcomments = JSON.stringify(comments_array);
-	localStorage.setItem(curr_topic+"comments", savedcomments);
+	localStorage.setItem(curr_topic + "comments", savedcomments);
 }
 
 function dynamic_add(commentlist, i) {
 	var node = document.createElement("LI");
 	var textnode = document.createTextNode(comments_array[i]["userID"]);
-	
+
 	var userdiv = document.createElement('div');
 	userdiv.className = 'usernameText';
 	userdiv.appendChild(textnode);
@@ -219,8 +210,8 @@ function dynamic_add(commentlist, i) {
 	thumbsup.style.height = "20px"
 	thumbsup.type = "image";
 	thumbsup.src = "images/thumbsup.jpg";
-	thumbsup.id = commentnode.nodeValue+";|,,likebutton";
-	thumbsup.setAttribute("onclick","increase_like(this)");
+	thumbsup.id = commentnode.nodeValue + ";|,,likebutton";
+	thumbsup.setAttribute("onclick", "increase_like(this)");
 
 	var thumbsup_number = document.createElement('div');
 	var likes = document.createTextNode(parseInt(comments_array[i]["likes"]));
@@ -239,11 +230,11 @@ function dynamic_add(commentlist, i) {
 
 	var thumbsdown = document.createElement('input');
 	thumbsdown.style.width = "20px";
-	thumbsdown.style.height= "20px";
+	thumbsdown.style.height = "20px";
 	thumbsdown.type = "image";
 	thumbsdown.src = "images/thumbsdown.jpg";
-	thumbsdown.id = commentnode.nodeValue+";|,,dislikebutton";
-	thumbsdown.setAttribute("onclick","increase_dislike(this)");
+	thumbsdown.id = commentnode.nodeValue + ";|,,dislikebutton";
+	thumbsdown.setAttribute("onclick", "increase_dislike(this)");
 
 	var thumbsdown_number = document.createElement('div');
 	var dislikes = document.createTextNode(parseInt(comments_array[i]["dislikes"]));
@@ -270,7 +261,7 @@ function initialize_comments() {
 	var commentlist = document.getElementById("commentListID");
 	for (var i = 0; i < comments_array.length; i++) {
 		dynamic_add(commentlist, i);
-		if(comments_like != null && !(comments_array[i]["comment"] in comments_like)) {
+		if (comments_like != null && !(comments_array[i]["comment"] in comments_like)) {
 			var comment = comments_array[i]["comment"]
 			comments_like[comment] = "none";
 		}
@@ -280,10 +271,10 @@ function initialize_comments() {
 function add_comment() {
 	var status = localStorage.getItem("is_logged_in");
 
-	if (status == "true"){
+	if (status == "true") {
 		var commentlist = document.getElementById("commentListID");
 
-		if(userdata != null) {
+		if (userdata != null) {
 			var commentInput = document.getElementById("commentInput").value;
 			var username = userdata["username"];
 			var commentdate = new Date().toString();
@@ -292,27 +283,25 @@ function add_comment() {
 
 			commentdate = timeformat[0] + " " + timeformat[1] + " " + timeformat[2] + " " + timeformat[3] + " " + timeformat[4];
 
-			var newcomment_dict = {userID: username, comment: commentInput, datetime: commentdate, likes: 0, dislikes: 0};
+			var newcomment_dict = { userID: username, comment: commentInput, datetime: commentdate, likes: 0, dislikes: 0 };
 
 			comments_like[commentInput] = "none";
-			comments_array.splice(0, 0,newcomment_dict);
-			append_comment(comments_array.length-1);
+			comments_array.splice(0, 0, newcomment_dict);
+			append_comment(comments_array.length - 1);
 			return true;
-		}
-		else {
+		} else {
 			var error = document.getElementById("comment-error");
 			error.innerHTML = "Please sign in before adding comments";
 			error.style.opacity = '1';
-	    	error.style.color = '#6EC867';
-	    	return false;
+			error.style.color = '#6EC867';
+			return false;
 		}
-	}
-	else {
+	} else {
 		var error = document.getElementById("comment-error");
 		error.innerHTML = "Please sign in before adding comments";
 		error.style.opacity = '1';
-    	error.style.color = '#6EC867';
-    	return false;
+		error.style.color = '#6EC867';
+		return false;
 	}
 }
 

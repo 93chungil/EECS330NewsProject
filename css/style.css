@@ -103,7 +103,12 @@ button {
 }
 button:active {
     margin-top: 2px;
+    border: 1px solid #84B084;
     box-shadow: 0 2px 0 #84B084;
+    border: 1px solid #84B084 !important;
+}
+button:hover {
+    color: #84B084 !important;
 }
 .user_buttons {
     float: right;
@@ -201,7 +206,7 @@ button:active {
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #fff;
+    background: #f3f3f3;
     transition: all 0.5s ease;
 }
 #wrapper.toggled #sidebar-wrapper {
@@ -299,6 +304,12 @@ h4 {
 }
 .topic_section {
     display: none;
+}
+.topics-button {
+    color: #84b084;
+    background: #f3f3f3;
+    box-shadow: none;
+    border: 0;
 }
 
 /*------------------------------ Article Styles -----------------------------*/

@@ -135,7 +135,7 @@ input:-webkit-autofill {
     box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
 }
 .styled-checkbox:checked+label:before {
-    background: #3E3E3E;
+    background: #84B084;
 }
 .styled-checkbox:disabled+label {
     color: #b8b8b8;

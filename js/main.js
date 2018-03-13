@@ -160,9 +160,8 @@ if (page == "profile.html") {
 } else if (page = 'index.html') {
 	let user_data = localStorage.getItem("user_info" + window.name);
 	user_data = JSON.parse(user_data);
-	logged_in = localStorage.getItem('is_logged_in');
-	logged_in = JSON.parse(logged_in);
-	if (logged_in == null || logged_in == 'false') {
+	let logged_in;
+	if (user_data == null) {
 		logged_in = false;
 	} else {
 		logged_in = true;

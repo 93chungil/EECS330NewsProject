@@ -20,11 +20,24 @@ function validate() {
     email = document.forms["signin_form"]["email"];
 
     if (username.checkValidity() && password.checkValidity()) {
-        localStorage.setItem("is_logged_in", true);
-        window.name = username.value;
-        var savedJSON = localStorage.getItem("user_info"+username.value);
-        let saved = JSON.parse(savedJSON);
-        window.location.href = 'index.html';
+        let user = localStorage.getItem("user_info") || null;
+        user = JSON.parse(user);
+        if (user) {
+            if (username.value == user.username && password.value == user.password) {
+                localStorage.setItem("is_logged_in", true);
+                window.location.href = 'index.html';
+            } else {
+                incorrect();
+            }
+        } else {
+            if (username.value == 'Test' && password.value == 'password') {
+                localStorage.setItem("is_logged_in", true);
+                window.location.href = 'index.html';
+            } else {
+                incorrect();
+            }
+        }
+
     } else {
         failed();
     }
@@ -49,4 +62,10 @@ function failed() {
     if (!username.value || !password.value) {
         error.innerHTML = 'Please fill out all the fields.';
     }
+}
+
+function incorrect() {
+    error.style.opacity = '1';
+    error.innerHTML = 'Wrong username and password combination.';
+    password.value = '';
 }

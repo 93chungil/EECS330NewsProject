@@ -349,16 +349,33 @@ h4 {
     margin: 0;
     display: inline-block;
 }
-.actionBox .form-button * {
+.comment-table {
+    width: 100%;
+}
+.comment-table th{
+    width: 80%;
+}
+
+.comment-table td{
     width: 20%;
+}
+
+.actionBox .form-button * {
+    width: 100%;
+    margin-bottom: 14px;
+    font-size: 10px;
+    margin-top: 4px;
+    height: 28px;
+    line-height: 28px;
 }
 .actionBox .form-group {
     margin-top: 3px;
     margin-bottom: 10px;
+    margin-right: 0;
 }
 .actionBox .form-group input {
     border-radius: 10px;
-    border: 1px solid #BADA55;
+    border: 1px solid grey;
     padding: 5px;
     width: 100%;
 }
@@ -373,7 +390,7 @@ h4 {
 }
 .commentList li {
     border-radius: 10px;
-    border: 1px solid #BADA55;
+    border: 1px solid grey;
     padding: 5px;
     margin: 0;
     margin-bottom: 10px;

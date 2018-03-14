@@ -103,18 +103,26 @@
 						      <label>Comments</label>
 						    </div>
 						    <div class="actionBox">
+						    	<div id="comment-error"></div>
+						        <form class="form-inline" role="form">
+						        	<table class = "comment-table">
+						        		<tr>
+						        			<th>
+						        				<div class="form-group">
+									                <input class="form-control" type="text" id="commentInput" placeholder="Your comments" />
+									            </div>
+						        			</th>
+						            		<td>
+									            <div class="form-button">
+									                <button class="btn btn-default" onclick="return add_comment()">Add</button>
+									            </div>
+									        </td>
+									    </tr>
+									</table>
+						        </form>
 						        <ul class="commentList" id="commentListID">
 						            
 						        </ul>
-						        <div id="comment-error"></div>
-						        <form class="form-inline" role="form">
-						            <div class="form-group">
-						                <input class="form-control" type="text" id="commentInput" placeholder="Your comments" />
-						            </div>
-						            <div class="form-button">
-						                <button class="btn btn-default" onclick="return add_comment()">Add</button>
-						            </div>
-						        </form>
 						    </div>
 						</div>
 

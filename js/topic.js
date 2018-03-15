@@ -59,8 +59,11 @@ get_articles();
 // Dynamic Comment Integration
 var savedcomments = localStorage.getItem(curr_topic + "comments");
 let comments_array;
+let added_node;
+let most_liked_node;
+
 if (savedcomments == null) {
-	comments_array = [{ userID: "chungLee", comment: "I think this website is awesome!", datetime: "Sat Mar 03 2018 21:07:02", likes: 0, dislikes: 0 }];
+	comments_array = [{ userID: "chungLee", comment: "I think this website is awesome!", datetime: "Sat Mar 03 2018 21:07:02", likes: 1, dislikes: 0 }];
 } else {
 	comments_array = JSON.parse(savedcomments);
 }
@@ -182,7 +185,7 @@ function sort_comments() {
 	localStorage.setItem(curr_topic + "comments", savedcomments);
 }
 
-function dynamic_add(commentlist, i) {
+function dynamic_add(commentlist, i, added) {
 	var node = document.createElement("LI");
 	var textnode = document.createTextNode(comments_array[i]["userID"]);
 
@@ -254,13 +257,19 @@ function dynamic_add(commentlist, i) {
 
 	node.appendChild(div);
 
+	node.id = commentnode.nodeValue + ";|,,node";
+
+	if (i ==0) {
+		node.style.border = "2px solid purple";
+	}
+
 	commentlist.append(node);
 }
 
 function initialize_comments() {
 	var commentlist = document.getElementById("commentListID");
 	for (var i = 0; i < comments_array.length; i++) {
-		dynamic_add(commentlist, i);
+		dynamic_add(commentlist, i, false);
 		if (comments_like != null && !(comments_array[i]["comment"] in comments_like)) {
 			var comment = comments_array[i]["comment"]
 			comments_like[comment] = "none";
@@ -288,7 +297,8 @@ function add_comment() {
 			comments_like[commentInput] = "none";
 			comments_array.splice(0, 0, newcomment_dict);
 			append_comment(comments_array.length - 1);
-			return true;
+			document.getElementById("commentInput").value = null;
+			return false;
 		} else {
 			var error = document.getElementById("comment-error");
 			error.innerHTML = "Please sign in before adding comments";
@@ -307,7 +317,7 @@ function add_comment() {
 
 function append_comment(index) {
 	var commentlist = document.getElementById("commentListID");
-	dynamic_add(commentlist, index);
+	dynamic_add(commentlist, index, true);
 	sort_comments();
 }
 

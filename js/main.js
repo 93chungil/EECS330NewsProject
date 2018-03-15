@@ -36,6 +36,7 @@ sidebar();
 let login_status = localStorage.getItem("is_logged_in");
 const user_buttons = document.querySelector('.user_buttons');
 const account_links = document.getElementById('account_links');
+let tab = "profile";
 
 if (login_status == 'true') {
 	account_links.style.display = 'block';
@@ -69,8 +70,16 @@ function update() {
 	if (profileValues["newpw"].value != profileValues["confirm"].value) {
 		alert('Please Check the Password');
 	} else {
+		saved["username"] = profileValues.username.value;
+        saved["email"] = profileValues.email.value;
+        if(profileValues["newpw"].value != null && profileValues["newpw"].value != ""){
+        	saved["password"] = profileValues.newpw.value;
+        	profileValues["newpw"].value = "";
+        	profileValues["confirm"].value = "";
+        }
 		var saveJSON = JSON.stringify(saved);
 		localStorage.setItem("user_info" + saved["username"], saveJSON);
+		window.name = saved["username"];
 		alert('Account Updated');
 	}
 }
@@ -100,7 +109,7 @@ function populate() {
 	profileValues["entertainment"].onclick = function() { intClick("entertainment") };
 	profileValues["health"].onclick = function() { intClick("health") };
 	profileValues["sports"].onclick = function() { intClick("sports") };
-	profileValues["update"].onclick = function() { update() };
+//	profileValues["update"].onclick = function() { update() };
 
 	//profileValues["update"].addEventListener('click', update);
 
@@ -148,6 +157,8 @@ function openInfo(evt, InfoName) {
 	// Show the current tab, and add an "active" class to the button that opened the tab
 	document.getElementById(InfoName).style.display = "block";
 	evt.currentTarget.className += " active";
+
+	
 }
 
 // If on profile page, open "Profile" tab as default

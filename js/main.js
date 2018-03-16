@@ -163,7 +163,13 @@ function openInfo(evt, InfoName) {
 }
 
 // If on profile page, open "Profile" tab as default
-var page = document.location.href.match(/[^\/]+$/)[0];
+var pagelist = document.location.href.match(/[^\/]+$/);
+if(pagelist != null){
+	var page = pagelist[0];
+}
+else {
+	page = 'index.html';
+}
 if (page == "profile.html") {
 	document.getElementById("defaultOpen").click();
 	var savedJSON = localStorage.getItem("user_info" + window.name);

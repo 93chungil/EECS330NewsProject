@@ -2,7 +2,7 @@ let curr_topic = localStorage.getItem("topic");
 let ids = {
 	"trump": '967983229633548289',
 	"blockchain": '967978827929571334',
-	"epl": '967986768220950528',
+	"efl": '967986768220950528',
 	"interestrates": '967987167866834944',
 	"crispr": '967987410884849664',
 	"kendricklamar": '967987617710125057'
@@ -14,22 +14,33 @@ let t_feed = `<a class="twitter-timeline" data-dnt="true" href="https: //twitter
 let twitter_sect = document.querySelector('.t_feed');
 twitter_sect.insertAdjacentHTML('afterbegin', t_feed);
 
-function get_articles() {
+function get_left_articles() {
 	let left = document.querySelector('.left-article');
-	let right = document.querySelector('.right-article');
 
 	var http = new XMLHttpRequest();
 	http.addEventListener("load", res_listen);
-	http.open('GET', `https://newsapi.org/v2/everything?q=${curr_topic}&pageSize=8&apiKey=cabb0d2395804edfbd4df9fe70fc10d8`, true);
+	http.open('GET', `https://newsapi.org/v2/top-headlines?sources=abc-news,the-new-york-times,cnn,the-guardian-uk,msnbc,al-jazeera-english,cbs-news&q=${curr_topic}&pageSize=4&apiKey=cabb0d2395804edfbd4df9fe70fc10d8`, true);
 	http.send(null);
 
 	function res_listen() {
 		const data = JSON.parse(this.responseText);
 		//console.log(data.articles);
-		display_articles(data);
+		if (data.articles.length < 3) {
+			var http = new XMLHttpRequest();
+			http.addEventListener("load", res_listen2);
+			http.open('GET', `https://newsapi.org/v2/everything?q=${curr_topic}&pageSize=4&apiKey=cabb0d2395804edfbd4df9fe70fc10d8`, true);
+			http.send(null);
+
+			function res_listen2() {
+				const data = JSON.parse(this.responseText);
+				display_left_articles(data);
+			}
+		} else {
+			display_left_articles(data);
+		}
 	}
 
-	function display_articles(data) {
+	function display_left_articles(data) {
 		//left side
 		for (let i = 0; i < 5; i++) {
 			article = data.articles[i];
@@ -41,8 +52,38 @@ function get_articles() {
 							<hr>`;
 			left.insertAdjacentHTML('afterbegin', snippet);
 		}
+	}
+}
+
+function get_right_articles() {
+	let right = document.querySelector('.right-article');
+
+	var http = new XMLHttpRequest();
+	http.addEventListener("load", res_listen);
+	http.open('GET', `https://newsapi.org/v2/top-headlines?sources=fox-news,fox-sports,the-wall-street-journal,the-washington-post&q=${curr_topic}&pageSize=4&apiKey=cabb0d2395804edfbd4df9fe70fc10d8`, true);
+	http.send(null);
+
+	function res_listen() {
+		const data = JSON.parse(this.responseText);
+		//console.log(data.articles);
+		if (data.articles.length < 3) {
+			var http = new XMLHttpRequest();
+			http.addEventListener("load", res_listen2);
+			http.open('GET', `https://newsapi.org/v2/everything?q=${curr_topic}&pageSize=4&apiKey=cabb0d2395804edfbd4df9fe70fc10d8`, true);
+			http.send(null);
+
+			function res_listen2() {
+				const data = JSON.parse(this.responseText);
+				display_right_articles(data);
+			}
+		} else {
+			display_right_articles(data);
+		}
+	}
+
+	function display_right_articles(data) {
 		//right side
-		for (let i = 4; i < 9; i++) {
+		for (let i = 0; i < 5; i++) {
 			article = data.articles[i];
 			let snippet = `<div class="article">
 								<p class="article_title">${article.title}</p>
@@ -54,7 +95,9 @@ function get_articles() {
 		}
 	}
 }
-get_articles();
+
+get_left_articles();
+get_right_articles();
 
 // Dynamic Comment Integration
 var savedcomments = localStorage.getItem(curr_topic + "commentsarray");

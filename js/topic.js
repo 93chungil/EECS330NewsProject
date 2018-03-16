@@ -57,7 +57,7 @@ function get_articles() {
 get_articles();
 
 // Dynamic Comment Integration
-var savedcomments = localStorage.getItem(curr_topic + "comments");
+var savedcomments = localStorage.getItem(curr_topic + "commentsarray");
 let comments_array;
 let added_node;
 let most_liked_node;
@@ -72,7 +72,7 @@ let userdata = JSON.parse(savedJSON);
 
 let comments_like;
 if (userdata != null) {
-	var savedlikes = localStorage.getItem(userdata["username"] + curr_topic + "likes");
+	var savedlikes = localStorage.getItem(userdata["username"] + curr_topic + "likesarray");
 	if (savedlikes == null) {
 		comments_like = {};
 	} else {
@@ -92,24 +92,28 @@ function increase_like(ele) {
 					comments_array[i]["likes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
 					comments_like[comment] = "like";
 				} else if (comments_like[comment] == "dislike") {
 					comments_array[i]["dislikes"]--;
 					comments_array[i]["likes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
 					var secondSpan = document.getElementById(comment + ";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					secondSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					comments_like[comment] = "like";
 				} else {
 					comments_array[i]["likes"]--;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					comments_like[comment] = "none";
 				}
 
 				savedlikes = JSON.stringify(comments_like);
-				localStorage.setItem(userdata["username"] + curr_topic + "likes", savedlikes);
+				localStorage.setItem(userdata["username"] + curr_topic + "likesarray", savedlikes);
 
 				break;
 			}
@@ -130,24 +134,28 @@ function increase_dislike(ele) {
 					comments_array[i]["dislikes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
 					comments_like[comment] = "dislike";
 				} else if (comments_like[comment] == "like") {
 					comments_array[i]["likes"]--;
 					comments_array[i]["dislikes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					var secondSpan = document.getElementById(comment + ";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
 					comments_like[comment] = "dislike";
 				} else {
 					comments_array[i]["dislikes"]--;
 					var numberSpan = document.getElementById(comment + ";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
+					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					comments_like[comment] = "none";
 				}
 
 				savedlikes = JSON.stringify(comments_like);
-				localStorage.setItem(userdata["username"] + curr_topic + "likes", savedlikes);
+				localStorage.setItem(userdata["username"] + curr_topic + "likesarray", savedlikes);
 
 				break;
 			}
@@ -182,7 +190,7 @@ function sort_comments() {
 	arraymove(comments_array, topindex, 0);
 	initialize_comments();
 	savedcomments = JSON.stringify(comments_array);
-	localStorage.setItem(curr_topic + "comments", savedcomments);
+	localStorage.setItem(curr_topic + "commentsarray", savedcomments);
 }
 
 function dynamic_add(commentlist, i, added) {
@@ -219,10 +227,12 @@ function dynamic_add(commentlist, i, added) {
 	var thumbsup_number = document.createElement('div');
 	var likes = document.createTextNode(parseInt(comments_array[i]["likes"]));
 	thumbsup_number.appendChild(likes);
-	thumbsup_number.style.fontSize = "8px";
-	thumbsup_number.style.paddingBottom = "8px";
-	thumbsup_number.style.width = "20px";
-	thumbsup_number.style.textAlign = "center";
+	if (comments_like != null && comments_like[comments_array[i]["comment"]]=="like") {
+		thumbsup_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
+	}
+	else {
+		thumbsup_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+	}
 	thumbsup_number.id = commentnode.nodeValue + ";|,,like";
 
 	likediv.appendChild(thumbsup);
@@ -242,10 +252,12 @@ function dynamic_add(commentlist, i, added) {
 	var thumbsdown_number = document.createElement('div');
 	var dislikes = document.createTextNode(parseInt(comments_array[i]["dislikes"]));
 	thumbsdown_number.appendChild(dislikes);
-	thumbsdown_number.style.fontSize = "8px";
-	thumbsdown_number.style.paddingBottom = "8px";
-	thumbsdown_number.style.width = "20px";
-	thumbsdown_number.style.textAlign = "center";
+	if (comments_like != null && comments_like[comments_array[i]["comment"]]=="dislike") {
+		thumbsdown_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
+	}
+	else {
+		thumbsdown_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+	}
 	thumbsdown_number.id = commentnode.nodeValue + ";|,,dislike";
 
 	dislikediv.appendChild(thumbsdown);
@@ -263,7 +275,188 @@ function dynamic_add(commentlist, i, added) {
 		node.style.border = "2px solid purple";
 	}
 
+	var replytablecontainer = document.createElement('li');
+	var replyinputtable = document.createElement('table');
+	replyinputtable.className = 'reply-table';
+
+	var tablerow = document.createElement('tr');
+	var tableh = document.createElement('th');
+	var tabled = document.createElement('td');
+
+	var inputwrapper = document.createElement('div');
+	inputwrapper.className = 'form-group';
+	var replyinput = document.createElement('input');
+	replyinput.setAttribute("type", "text");
+	replyinput.id = commentnode.nodeValue + ";|,,replyinput";
+	replyinput.setAttribute("placeholder", "Your reply");
+	inputwrapper.appendChild(replyinput);
+
+	var buttonwrapper = document.createElement('div');
+	buttonwrapper.className = "form-button"
+	var replybutton = document.createElement('button');
+	replybutton.className = "btn btn-default";
+	replybutton.setAttribute("onclick", "reply(this)");
+	replybutton.innerHTML = "Reply";
+	replybutton.id = commentnode.nodeValue + ";|,,replybutton";
+	buttonwrapper.appendChild(replybutton);
+
+	tableh.appendChild(inputwrapper);
+	tabled.appendChild(buttonwrapper);
+
+	tablerow.appendChild(tableh);
+	tablerow.appendChild(tabled);
+
+	replyinputtable.appendChild(tablerow);
+
+	var replyerror = document.createElement('div');
+	replyerror.id = commentnode.nodeValue + ";|,,replyerror";
+
+	node.appendChild(replyerror);
+	node.appendChild(replyinputtable);
+	
+	var replylist = document.createElement('ul');
+	replylist.className = "replyList";
+	replylist.id = commentnode.nodeValue + ";|,,replylist";
+
+	var savedreplies = localStorage.getItem(curr_topic + commentnode.nodeValue + "repliesarray");
+	
+	if(savedreplies != null) {
+		var replies = JSON.parse(savedreplies);
+		for (var i =0; i < replies.length; i++){
+			var replyelement = document.createElement('li');
+			var replytextnode = document.createTextNode(replies[i]["userID"]);
+
+			var replyuserdiv = document.createElement('div');
+			replyuserdiv.className = 'replyusernameText';
+			replyuserdiv.appendChild(replytextnode);
+
+			var replydiv = document.createElement('div');
+			replydiv.className = 'replyText';
+			var replyp = document.createElement('p');
+			var replycommentnode = document.createTextNode(replies[i]["reply"])
+			replyp.appendChild(replycommentnode);
+			replydiv.appendChild(replyp);
+			var replyspan = document.createElement('span');
+			replyspan.className = "date sub-text";
+			var replydatenode = document.createTextNode(replies[i]["datetime"]);
+			replyspan.appendChild(replydatenode);
+			replydiv.appendChild(replyspan);
+
+			replyelement.appendChild(replyuserdiv);
+
+			replyelement.appendChild(replydiv);
+
+			replylist.append(replyelement);
+		}
+	}
+
+	node.appendChild(replylist);
 	commentlist.append(node);
+}
+
+function reply(ele) {
+	var comment = ele.id;
+	comment = comment.split(";|,,")[0];
+	if (userdata != null) {
+		var replyinput = document.getElementById(comment+";|,,replyinput");
+		var replylist = document.getElementById(comment+";|,,replylist");
+		for (var i = 0; i < comments_array.length; i++) {
+			if (comments_array[i]["comment"] == comment) {
+				var savedreplies = localStorage.getItem(curr_topic + comment + "repliesarray");
+				if (savedreplies == null) {
+					var commentdate = new Date().toString();
+					var timeformat = commentdate.split(" ");
+					commentdate = timeformat[0] + " " + timeformat[1] + " " + timeformat[2] + " " + timeformat[3] + " " + timeformat[4];
+
+					var replies = [{
+						"userID": userdata["username"],
+						"reply": replyinput.value,
+						"datetime": commentdate}];
+
+					var replyelement = document.createElement('li');
+					var replytextnode = document.createTextNode(replies[0]["userID"]);
+
+					var replyuserdiv = document.createElement('div');
+					replyuserdiv.className = 'replyusernameText';
+					replyuserdiv.appendChild(replytextnode);
+
+					var replydiv = document.createElement('div');
+					replydiv.className = 'replyText';
+					var replyp = document.createElement('p');
+					var replycommentnode = document.createTextNode(replies[0]["reply"])
+					replyp.appendChild(replycommentnode);
+					replydiv.appendChild(replyp);
+					var replyspan = document.createElement('span');
+					replyspan.className = "date sub-text";
+					var replydatenode = document.createTextNode(replies[0]["datetime"]);
+					replyspan.appendChild(replydatenode);
+					replydiv.appendChild(replyspan);
+
+					replyelement.appendChild(replyuserdiv);
+
+					replyelement.appendChild(replydiv);
+
+					replylist.append(replyelement);
+
+				} else {
+					var commentdate = new Date().toString();
+					var timeformat = commentdate.split(" ");
+					commentdate = timeformat[0] + " " + timeformat[1] + " " + timeformat[2] + " " + timeformat[3] + " " + timeformat[4];
+
+					var newreply = {
+						"userID": userdata["username"],
+						"reply": replyinput.value,
+						"datetime": commentdate};
+
+					var replies = JSON.parse(savedreplies);
+					
+					replies.splice(0, 0, newreply);
+					while (replylist.firstChild) {
+							replylist.removeChild(replylist.firstChild);
+					}
+					for (var i =0; i < replies.length; i++){
+						var replyelement = document.createElement('li');
+						var replytextnode = document.createTextNode(replies[i]["userID"]);
+
+						var replyuserdiv = document.createElement('div');
+						replyuserdiv.className = 'replyusernameText';
+						replyuserdiv.appendChild(replytextnode);
+
+						var replydiv = document.createElement('div');
+						replydiv.className = 'replyText';
+						var replyp = document.createElement('p');
+						var replycommentnode = document.createTextNode(replies[i]["reply"])
+						replyp.appendChild(replycommentnode);
+						replydiv.appendChild(replyp);
+						var replyspan = document.createElement('span');
+						replyspan.className = "date sub-text";
+						var replydatenode = document.createTextNode(replies[i]["datetime"]);
+						replyspan.appendChild(replydatenode);
+						replydiv.appendChild(replyspan);
+
+						replyelement.appendChild(replyuserdiv);
+
+						replyelement.appendChild(replydiv);
+
+						replylist.append(replyelement);
+					}
+
+				}
+				replyinput.value = '';
+
+				savedreplies = JSON.stringify(replies);
+				localStorage.setItem(curr_topic + comment + "repliesarray", savedreplies);
+
+				break;
+			}
+		}
+	}
+	else {
+		var error = document.getElementById(comment+ ";|,,replyerror");
+		error.innerHTML = "Please sign in before adding replies";
+		error.style.opacity = '1';
+		error.style.color = '#6EC867';
+	}
 }
 
 function initialize_comments() {

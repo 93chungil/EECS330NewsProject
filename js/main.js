@@ -135,6 +135,7 @@ function populate() {
 
 function sign_out() {
 	localStorage.setItem("is_logged_in", false);
+	window.name = 'notsigned_inwaaaaaaaaaaaaa';
 	window.location.href = './signin.html';
 }
 

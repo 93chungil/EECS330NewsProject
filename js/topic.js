@@ -357,8 +357,8 @@ function dynamic_add(commentlist, i, added) {
 function reply(ele) {
 	var comment = ele.id;
 	comment = comment.split(";|,,")[0];
+	var replyinput = document.getElementById(comment+";|,,replyinput");
 	if (userdata != null) {
-		var replyinput = document.getElementById(comment+";|,,replyinput");
 		var replylist = document.getElementById(comment+";|,,replylist");
 		for (var i = 0; i < comments_array.length; i++) {
 			if (comments_array[i]["comment"] == comment) {
@@ -456,6 +456,7 @@ function reply(ele) {
 		error.innerHTML = "Please sign in before adding replies";
 		error.style.opacity = '1';
 		error.style.color = '#6EC867';
+		replyinput.value;
 	}
 }
 
@@ -472,12 +473,11 @@ function initialize_comments() {
 
 function add_comment() {
 	var status = localStorage.getItem("is_logged_in");
-
+	var commentInput = document.getElementById("commentInput").value;
 	if (status == "true") {
 		var commentlist = document.getElementById("commentListID");
 
 		if (userdata != null) {
-			var commentInput = document.getElementById("commentInput").value;
 			var username = userdata["username"];
 			var commentdate = new Date().toString();
 
@@ -504,6 +504,7 @@ function add_comment() {
 		error.innerHTML = "Please sign in before adding comments";
 		error.style.opacity = '1';
 		error.style.color = '#6EC867';
+		commentInput = '';
 		return false;
 	}
 }

@@ -92,23 +92,23 @@ function increase_like(ele) {
 					comments_array[i]["likes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
 					comments_like[comment] = "like";
 				} else if (comments_like[comment] == "dislike") {
 					comments_array[i]["dislikes"]--;
 					comments_array[i]["likes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
 					var secondSpan = document.getElementById(comment + ";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
-					secondSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+					secondSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					comments_like[comment] = "like";
 				} else {
 					comments_array[i]["likes"]--;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					comments_like[comment] = "none";
 				}
 
@@ -134,23 +134,23 @@ function increase_dislike(ele) {
 					comments_array[i]["dislikes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
 					comments_like[comment] = "dislike";
 				} else if (comments_like[comment] == "like") {
 					comments_array[i]["likes"]--;
 					comments_array[i]["dislikes"]++;
 					var numberSpan = document.getElementById(comment + ";|,,like");
 					numberSpan.innerHTML = parseInt(comments_array[i]["likes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					var secondSpan = document.getElementById(comment + ";|,,dislike");
 					secondSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
 					comments_like[comment] = "dislike";
 				} else {
 					comments_array[i]["dislikes"]--;
 					var numberSpan = document.getElementById(comment + ";|,,dislike");
 					numberSpan.innerHTML = parseInt(comments_array[i]["dislikes"]);
-					numberSpan.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+					numberSpan.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 					comments_like[comment] = "none";
 				}
 
@@ -227,11 +227,10 @@ function dynamic_add(commentlist, i, added) {
 	var thumbsup_number = document.createElement('div');
 	var likes = document.createTextNode(parseInt(comments_array[i]["likes"]));
 	thumbsup_number.appendChild(likes);
-	if (comments_like != null && comments_like[comments_array[i]["comment"]]=="like") {
-		thumbsup_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
-	}
-	else {
-		thumbsup_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+	if (comments_like != null && comments_like[comments_array[i]["comment"]] == "like") {
+		thumbsup_number.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: blue; font-weight: bold");
+	} else {
+		thumbsup_number.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 	}
 	thumbsup_number.id = commentnode.nodeValue + ";|,,like";
 
@@ -252,11 +251,10 @@ function dynamic_add(commentlist, i, added) {
 	var thumbsdown_number = document.createElement('div');
 	var dislikes = document.createTextNode(parseInt(comments_array[i]["dislikes"]));
 	thumbsdown_number.appendChild(dislikes);
-	if (comments_like != null && comments_like[comments_array[i]["comment"]]=="dislike") {
-		thumbsdown_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
-	}
-	else {
-		thumbsdown_number.setAttribute("style","font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
+	if (comments_like != null && comments_like[comments_array[i]["comment"]] == "dislike") {
+		thumbsdown_number.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: red; font-weight: bold");
+	} else {
+		thumbsdown_number.setAttribute("style", "font-size: 8px; padding-bottom: 8px; width: 20px; text-align: center; color: black; font-weight: normal");
 	}
 	thumbsdown_number.id = commentnode.nodeValue + ";|,,dislike";
 
@@ -271,7 +269,7 @@ function dynamic_add(commentlist, i, added) {
 
 	node.id = commentnode.nodeValue + ";|,,node";
 
-	if (i ==0) {
+	if (i == 0) {
 		node.style.border = "2px solid purple";
 	}
 
@@ -313,16 +311,16 @@ function dynamic_add(commentlist, i, added) {
 
 	node.appendChild(replyerror);
 	node.appendChild(replyinputtable);
-	
+
 	var replylist = document.createElement('ul');
 	replylist.className = "replyList";
 	replylist.id = commentnode.nodeValue + ";|,,replylist";
 
 	var savedreplies = localStorage.getItem(curr_topic + commentnode.nodeValue + "repliesarray");
-	
-	if(savedreplies != null) {
+
+	if (savedreplies != null) {
 		var replies = JSON.parse(savedreplies);
-		for (var i =0; i < replies.length; i++){
+		for (var i = 0; i < replies.length; i++) {
 			var replyelement = document.createElement('li');
 			var replytextnode = document.createTextNode(replies[i]["userID"]);
 
@@ -358,8 +356,8 @@ function reply(ele) {
 	var comment = ele.id;
 	comment = comment.split(";|,,")[0];
 	if (userdata != null) {
-		var replyinput = document.getElementById(comment+";|,,replyinput");
-		var replylist = document.getElementById(comment+";|,,replylist");
+		var replyinput = document.getElementById(comment + ";|,,replyinput");
+		var replylist = document.getElementById(comment + ";|,,replylist");
 		for (var i = 0; i < comments_array.length; i++) {
 			if (comments_array[i]["comment"] == comment) {
 				var savedreplies = localStorage.getItem(curr_topic + comment + "repliesarray");
@@ -371,7 +369,8 @@ function reply(ele) {
 					var replies = [{
 						"userID": userdata["username"],
 						"reply": replyinput.value,
-						"datetime": commentdate}];
+						"datetime": commentdate
+					}];
 
 					var replyelement = document.createElement('li');
 					var replytextnode = document.createTextNode(replies[0]["userID"]);
@@ -406,15 +405,16 @@ function reply(ele) {
 					var newreply = {
 						"userID": userdata["username"],
 						"reply": replyinput.value,
-						"datetime": commentdate};
+						"datetime": commentdate
+					};
 
 					var replies = JSON.parse(savedreplies);
-					
+
 					replies.splice(0, 0, newreply);
 					while (replylist.firstChild) {
-							replylist.removeChild(replylist.firstChild);
+						replylist.removeChild(replylist.firstChild);
 					}
-					for (var i =0; i < replies.length; i++){
+					for (var i = 0; i < replies.length; i++) {
 						var replyelement = document.createElement('li');
 						var replytextnode = document.createTextNode(replies[i]["userID"]);
 
@@ -450,9 +450,8 @@ function reply(ele) {
 				break;
 			}
 		}
-	}
-	else {
-		var error = document.getElementById(comment+ ";|,,replyerror");
+	} else {
+		var error = document.getElementById(comment + ";|,,replyerror");
 		error.innerHTML = "Please sign in before adding replies";
 		error.style.opacity = '1';
 		error.style.color = '#6EC867';

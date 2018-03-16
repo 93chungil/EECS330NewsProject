@@ -85,10 +85,10 @@ a {
     transition: transform .5s;
 }
 #logo {
-    max-height: 36px;
+    max-height: 55px;
     display: inline-block;
     margin-left: 100px;
-    margin-top: 8px;
+    margin-top: 0px;
 }
 button {
     padding: 8px 15px;
@@ -352,14 +352,12 @@ h4 {
 .comment-table {
     width: 100%;
 }
-.comment-table th{
+.comment-table th {
     width: 80%;
 }
-
-.comment-table td{
+.comment-table td {
     width: 20%;
 }
-
 .reply-table {
     margin-top: 10px;
     width: 90%;
@@ -368,7 +366,7 @@ h4 {
 .reply-table th {
     width: 80%;
 }
-.reply-table td{
+.reply-table td {
     width: 20%;
 }
 .replyList {
@@ -384,7 +382,6 @@ h4 {
     margin: 0;
     margin-bottom: 10px;
 }
-
 .actionBox .form-button * {
     width: 100%;
     margin-bottom: 14px;
@@ -420,7 +417,6 @@ h4 {
     margin: 0;
     margin-bottom: 10px;
 }
-
 .commenterImage {
     width: 30px;
     margin-right: 5px;
@@ -461,7 +457,6 @@ h4 {
 .reactWrapper span {
     vertical-align: middle;
 }
-
 
 /*-------------- Footer ------------------*/
 

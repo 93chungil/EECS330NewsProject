@@ -62,7 +62,7 @@ function buttonColor(interestID) {
 function intClick(interestID) {
 	saved[interestID] = !saved[interestID];
 	var saveJSON = JSON.stringify(saved);
-	localStorage.setItem("user_info", saveJSON);
+	localStorage.setItem("user_info" + saved["username"], saveJSON);
 	buttonColor(interestID);
 }
 
